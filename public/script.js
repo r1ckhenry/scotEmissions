@@ -1,5 +1,8 @@
-function filterBy( data, key, value ) {
-  return data.filter( ( set ) => { return set[key] === value && set["emission"] === "CH4" && set["value"] > 0.1  } )
+function filterBy( data, conditions ) {
+  return data.filter( ( set ) => {
+    const matchesConditionsArr = conditions.map( condition => { set[condition[0]] === condition[1] })
+    return matchesConditions.every( bool => bool )
+  })
 }
 
 function prepForBarChart( data ) {
@@ -13,19 +16,24 @@ window.onload = () => {
     .then( ( response ) => {
       return response.json();
     }).then( ( data ) => {
-      var barData = filterBy( data, "year", "1998" );
-      var prepData = [ [ "sector", "CH4 total emission" ] ].concat( prepForBarChart( barData ) );
+      var barData = filterBy( data, [["year", "1998"], ["emission", "CO2"]] );
+      console.log( barData );
+      var result = prepForBarChart( barData );
+
+
+
+
+      var prepData = [ [ "sector", "CH4 total emission" ] ].concat( result );
 
       google.charts.load('current', {packages: ['corechart', 'bar']});
       google.charts.setOnLoadCallback(drawBasic);
 
       function drawBasic() {
 
-        console.log( prepData )
-
         var data = google.visualization.arrayToDataTable( prepData );
 
         var options = {
+          height: 600,
           title: 'CH4 Emission Scotland',
           hAxis: {
             title: 'Total Emission'
@@ -39,13 +47,6 @@ window.onload = () => {
 
         chart.draw(data, options);
       }
-
-
-
-
-
-
-
 
 
 
