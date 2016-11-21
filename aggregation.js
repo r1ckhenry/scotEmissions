@@ -10,9 +10,6 @@ var scotEmissions = {
 
       var years = data.filter( ( set ) => {
         return set[5] === sector.name;
-        // if ( set[5] === sector.name ) {
-        //   return { year: Number( set[1] ) }
-        // }
       })
       var years2 = years.map( ( set ) => { return { year: Number( set[1] ) } } )
       var uniqYears = _.uniqBy( years2, "year" )
@@ -26,13 +23,13 @@ var scotEmissions = {
 
       var sectorYears = sector.years.map( ( year ) => {
 
-        var pollutants = data.map( ( set ) => {
-          if ( set[1] === year.year ) {
-            return { name: set[5], amount: Number( set[4] ) }
-          }
+        var pollutants = data.filter( ( set ) => {
+          return ( Number( set[1] ) === year.year && sector.name === set[5] )
         })
 
-        return Object.assign( {}, year, { pollutants: pollutants } )
+        var pollutantsMap = pollutants.map( ( set ) => { return { name: set[6], amount: Number( set[4] ) } } )
+
+        return Object.assign( {}, year, { pollutants: pollutantsMap } )
       })
 
       return Object.assign( {}, sector, { years: sectorYears } )
