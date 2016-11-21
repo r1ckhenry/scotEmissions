@@ -1,5 +1,5 @@
 var _ = require( 'lodash' );
-//
+
 // var data = [  [ 'S92000003', 2014,'Mt Co2Equiv',0.008,'Waste Management','CO2' ],
 //               [ 'S92000003', 2014, 'Mt Co2Equiv', 0.078, 'Waste Management', 'N2O' ] ]
 
@@ -18,9 +18,7 @@ var scotEmissions = {
   },
 
   addPollutantsToYears: function( sectorsWithYears, data ) {
-
     return sectorsWithYears.map( ( sector ) => {
-
       var sectorYears = sector.years.map( ( year ) => {
 
         var pollutants = data.filter( ( set ) => {
@@ -28,7 +26,6 @@ var scotEmissions = {
         })
 
         var pollutantsMap = pollutants.map( ( set ) => { return { name: set[6], amount: Number( set[4] ) } } )
-
         return Object.assign( {}, year, { pollutants: pollutantsMap } )
       })
 
@@ -39,12 +36,14 @@ var scotEmissions = {
   },
 
   parse: function( data ) {
-    var uniqSectors = _.uniqBy ( data.map(  set  => { return { name: set[5] } } ), "name" );
-    var sectorsWithYears = this.addYearsToSectors( uniqSectors, data );
+    var sectors = data.map(  set  => { return { name: set[5], value: Number(set[4]), year: set[1], emission: set[6] } } )
+    return sectors
 
-    var sectorsWithYearsWithPollutants = this.addPollutantsToYears( sectorsWithYears, data );
-
-    return sectorsWithYearsWithPollutants;
+    // var sectorsWithYears = this.addYearsToSectors( uniqSectors, data );
+    //
+    // var sectorsWithYearsWithPollutants = this.addPollutantsToYears( sectorsWithYears, data );
+    //
+    // return sectorsWithYearsWithPollutants;
 
   }
 

@@ -4,6 +4,8 @@ var express = require( "express" );
 var app = express();
 var scotEmissions = require( './aggregation.js' );
 
+app.use( express.static('public') )
+
 app.get( "/sectors", function( req, res ) {
 
   var stream = fs.createReadStream("greenhouse_gas.csv");
