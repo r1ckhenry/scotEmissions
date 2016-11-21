@@ -2,7 +2,7 @@ var fs = require( 'fs' );
 var csv = require( 'fast-csv' );
 var express = require( "express" );
 var app = express();
-var scotEmissions = require( './aggregation.js' );
+var parse = require( './aggregation.js' );
 
 app.use( express.static('public') )
 
@@ -14,7 +14,7 @@ app.get( "/sectors", function( req, res ) {
   var csvStream = csv().on("data", function(data){
     sectors.push( data );
   }).on("end", function(){
-    var result = scotEmissions.parse( sectors )
+    var result = parse( sectors )
     res.json( result )
   });
 
