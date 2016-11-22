@@ -1,4 +1,19 @@
-import { filterBy, prepForBarChart, getAllUniqBy } from "./libs/aggregation"
+import { filterBy, prepForBarChart, getAllUniqBy } from "./libs/aggregation";
+import React from "react"
+import ReactDOM from "react-dom"
+
+import AppContainer from "./components/AppContainer"
+
+const init = () => {
+
+  console.log( "hello, data arrived" )
+
+  ReactDOM.render(
+    <AppContainer />,
+    document.getElementById( "app" )
+  )
+
+}
 
 window.onload = () => {
 
@@ -7,11 +22,9 @@ window.onload = () => {
       return response.json();
     }).then( ( data ) => {
 
-
-      var years = getAllUniqBy( data, "emission" );
-      console.log( years )
-
-
+      init();
+      // var years = getAllUniqBy( data, "emission" );
+      // console.log( years )
 
       // var barData = filterBy( data, [["year", "1998"], ["emission", "CO2"]] );
       // var result = prepForBarChart( barData );

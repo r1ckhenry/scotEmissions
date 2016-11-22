@@ -4,6 +4,9 @@ module.exports = {
     filename: 'script.js',
     path: './public'
   },
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
   module:{
     loaders: [
       {
@@ -11,7 +14,7 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         loader: 'babel', // 'babel-loader' is also a legal name to reference
         query: {
-          presets: ['es2015']
+          presets: ['react', 'es2015']
         }
       }
     ]
