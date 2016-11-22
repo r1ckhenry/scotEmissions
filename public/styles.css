@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i');
+
+body {
+  margin: 0px;
+  font-family: 'Lato', sans-serif;
+  letter-spacing: 0.67px;
+}
+
+.section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.section-navy {
+  background: rgba(7,30,54,1);
+  background: -moz-linear-gradient(-45deg, rgba(7,30,54,1) 0%, rgba(17,102,85,1) 100%);
+  background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(7,30,54,1)), color-stop(100%, rgba(17,102,85,1)));
+  background: -webkit-linear-gradient(-45deg, rgba(7,30,54,1) 0%, rgba(17,102,85,1) 100%);
+  background: -o-linear-gradient(-45deg, rgba(7,30,54,1) 0%, rgba(17,102,85,1) 100%);
+  background: -ms-linear-gradient(-45deg, rgba(7,30,54,1) 0%, rgba(17,102,85,1) 100%);
+  background: linear-gradient(135deg, rgba(7,30,54,1) 0%, rgba(17,102,85,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#071e36', endColorstr='#116655', GradientType=1 );
+}
+
+.section-title {
+  font-size: 28px;
+  color: #ffffff;
+  font-weight: 300;
+}
+
+.section-title-inverse {
+  color: #c1c1c1;
+}
