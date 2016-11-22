@@ -1,15 +1,20 @@
 import { filterBy, prepForBarChart, getAllUniqBy } from "./libs/aggregation";
 import React from "react"
 import ReactDOM from "react-dom"
+import { createStore } from 'redux';
+import { Provider } from "react-redux";
 
 import AppContainer from "./components/AppContainer"
+import reducer from "./reducers"
+
+const store = createStore( reducer )
 
 const init = () => {
 
-  console.log( "hello, data arrived" )
-
   ReactDOM.render(
-    <AppContainer />,
+    <Provider store={ store }>
+      <AppContainer />
+    </Provider>,
     document.getElementById( "app" )
   )
 
@@ -21,6 +26,8 @@ window.onload = () => {
     .then( ( response ) => {
       return response.json();
     }).then( ( data ) => {
+
+      store.dispatch( { type: "ADD_DATASET", data } )
 
       init();
       // var years = getAllUniqBy( data, "emission" );

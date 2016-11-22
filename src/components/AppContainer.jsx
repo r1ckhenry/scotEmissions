@@ -1,9 +1,11 @@
 import React from "react";
 
-import Header from "./Header"
-import Chart from  "./Chart"
+import Header from "./Header";
+import Chart from  "./Chart";
 
-const AppContainer = () => {
+import { connect } from 'react-redux'
+
+const AppContainer = ( { data, dispatch } ) => {
 
   return(
     <div>
@@ -14,4 +16,8 @@ const AppContainer = () => {
 
 }
 
-export default AppContainer;
+const mapStateToProps = ( state ) => {
+  return state
+}
+
+export default connect( mapStateToProps )( AppContainer );
