@@ -18,6 +18,30 @@ body, html {
   height: 100vh;
 }
 
+.button-split {
+  margin: 0 auto;
+  background: #4a89dc;
+  border-radius: 30px;
+  font-weight: 100;
+}
+
+.button-split button {
+  cursor: pointer;
+  outline: none;
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
+  padding: 16px;
+  font-size: 16px;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .header {
   display: flex;
   justify-content: center;
