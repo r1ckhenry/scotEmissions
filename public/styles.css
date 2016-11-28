@@ -2,7 +2,7 @@
 
 body {
   margin: 0px;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Lato', sans-serif !important;
   letter-spacing: 0.67px;
   background: rgba(7,30,54,1);
   background: -moz-linear-gradient(-45deg, rgba(7,30,54,1) 0%, rgba(17,102,85,1) 100%);
@@ -15,38 +15,59 @@ body {
 }
 
 body, html {
-  height: 100vh;
+  height: 100%;
+  overflow: hidden;
+}
+
+.max-vh, .max-vh > div {
+  height: 100%;
+}
+
+.nav {
+  width: 65%;
+  height: 15%;
+  margin: 0 auto;
 }
 
 .button-split {
-  margin: 0 auto;
+  display: flex;
   background: #4a89dc;
   border-radius: 30px;
-  font-weight: 100;
 }
 
-.button-split button {
+.button-split .button {
+  flex: 1;
+  font-weight: 100;
   cursor: pointer;
   outline: none;
   background-color: transparent;
   border: none;
+  border-right: 1px solid #ffffff;
   color: #ffffff;
   padding: 16px;
   font-size: 16px;
 }
 
-main {
+.button-split .button:last-child {
+  border-right: none;
+}
+
+.container {
+  width: 80%;
+  height: 80%;
+  margin: 0 auto;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: space-around;
   flex-direction: column;
 }
 
 .header {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
+  height: 20%;
   color: #ffffff;
 }
 

@@ -2,24 +2,26 @@ import React from "react";
 
 import { arrayToUniqValuesByKey } from "../libs/aggregation";
 
-const Filter = ( { data, dispatch } ) => {
+const Filter = ( { data, dispatch, onFilterClick } ) => {
 
-  // const onFilterClick = ( e ) => {
-  //   console.log( "filter clicked", e.target.value )
-  //   dispatch( { type: "UPDATE_EMISSION_NAME", emissionName: e.target.value } )
-  // }
-  //
-  // var emissionNames = arrayToUniqValuesByKey( data, "emission" );
-  //
-  // const buttons = emissionNames.map( ( emissionName, index ) => {
-  //   return( <button key={index} onClick={ onFilterClick } value={ emissionName } >{ emissionName }</button> )
-  // })
-  //
-  // return(
-  //   <div>
-  //     { buttons }
-  //   </div>
-  // )
+  var emissionNames = arrayToUniqValuesByKey( data, "emission" );
+
+  const buttons = emissionNames.map( ( emissionName, index ) => {
+    return( <button key={index} className="button" onClick={ onFilterClick } value={ emissionName } >{ emissionName }</button> )
+  })
+
+  return(
+    <nav className="nav">
+      <div className="button-split">
+        { buttons }
+      </div>
+      <form>
+        <button>Up</button>
+        <input type="number" min="0" max="10" step="2" />
+        <button>Down</button>
+      </form>
+    </nav>
+  )
 
 }
 

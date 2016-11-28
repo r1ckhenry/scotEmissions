@@ -23262,10 +23262,60 @@
 	      dispatch = _ref.dispatch;
 
 
+	  var onFilterClick = function onFilterClick(e) {
+
+	    if (chart) {
+	      chart.destroy();
+	    }
+
+	    var ctx = document.getElementById("chart");
+	    ctx.width = "100%";
+
+	    var chartData = (0, _aggregation.arrayFilteredByConditions)(data, [["year", "1998"], ["emission", e.target.value]]);
+	    var chartDataValues = (0, _aggregation.arrayToUniqValuesByKey)(chartData, "value");
+	    var chartLabels = (0, _aggregation.arrayToUniqValuesByKey)(data, "name");
+
+	    var chartDataInfo = {
+	      labels: chartLabels,
+	      datasets: [{
+	        data: chartDataValues
+	      }]
+	    };
+
+	    var chartOptions = {
+	      scales: {
+	        xAxes: [{
+	          stacked: true,
+	          ticks: {
+	            autoSkip: false,
+	            maxRotation: 0,
+	            minRotation: 90
+	          }
+	        }],
+	        yAxes: [{
+	          stacked: true
+	        }]
+	      }
+	    };
+
+	    Chart.defaults.global.defaultFontColor = "#fff";
+	    Chart.defaults.global.defaultFontFamily = "'Lato', sans-serif";
+	    Chart.defaults.global.legend.display = false;
+
+	    var chartDisplay = new Chart(ctx, {
+	      type: 'bar',
+	      data: chartDataInfo,
+	      options: chartOptions
+	    });
+
+	    dispatch({ type: "UPDATE_CHART", chartDisplay: chartDisplay });
+	  };
+
 	  return _react2.default.createElement(
 	    "div",
 	    null,
 	    _react2.default.createElement(_Header2.default, { title: "Scotland's Emissions", inverseTitle: "in graphs", subtitle: "This is some placeholder text" }),
+	    _react2.default.createElement(_Filter2.default, { data: data, dispatch: dispatch, onFilterClick: onFilterClick }),
 	    _react2.default.createElement(_ChartArea2.default, { data: data, chart: chart, dispatch: dispatch })
 	  );
 	};
@@ -23342,26 +23392,45 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Filter = function Filter(_ref) {
-
-	  // const onFilterClick = ( e ) => {
-	  //   console.log( "filter clicked", e.target.value )
-	  //   dispatch( { type: "UPDATE_EMISSION_NAME", emissionName: e.target.value } )
-	  // }
-	  //
-	  // var emissionNames = arrayToUniqValuesByKey( data, "emission" );
-	  //
-	  // const buttons = emissionNames.map( ( emissionName, index ) => {
-	  //   return( <button key={index} onClick={ onFilterClick } value={ emissionName } >{ emissionName }</button> )
-	  // })
-	  //
-	  // return(
-	  //   <div>
-	  //     { buttons }
-	  //   </div>
-	  // )
-
 	  var data = _ref.data,
-	      dispatch = _ref.dispatch;
+	      dispatch = _ref.dispatch,
+	      onFilterClick = _ref.onFilterClick;
+
+
+	  var emissionNames = (0, _aggregation.arrayToUniqValuesByKey)(data, "emission");
+
+	  var buttons = emissionNames.map(function (emissionName, index) {
+	    return _react2.default.createElement(
+	      "button",
+	      { key: index, className: "button", onClick: onFilterClick, value: emissionName },
+	      emissionName
+	    );
+	  });
+
+	  return _react2.default.createElement(
+	    "nav",
+	    { className: "nav" },
+	    _react2.default.createElement(
+	      "div",
+	      { className: "button-split" },
+	      buttons
+	    ),
+	    _react2.default.createElement(
+	      "form",
+	      null,
+	      _react2.default.createElement(
+	        "button",
+	        null,
+	        "Up"
+	      ),
+	      _react2.default.createElement("input", { type: "number", min: "0", max: "10", step: "2" }),
+	      _react2.default.createElement(
+	        "button",
+	        null,
+	        "Down"
+	      )
+	    )
+	  );
 	};
 
 	exports.default = Filter;
@@ -40511,63 +40580,18 @@
 	      dispatch = _ref.dispatch;
 
 
-	  var onFilterClick = function onFilterClick(e) {
+	  var chartDisplay = _react2.default.DOM.canvas({ id: "chart", style: { height: "100%" } });
 
-	    if (chart) {
-	      chart.destroy();
-	    }
+	  // const emissionNames = arrayToUniqValuesByKey( data, "emission" );
+	  //
+	  // const buttons = emissionNames.map( ( emissionName, index ) => {
+	  //   return( <button className="button" key={index} onClick={ onFilterClick } value={ emissionName } >{ emissionName }</button> )
+	  // })
 
-	    var ctx = document.getElementById("chart");
-
-	    var chartData = (0, _aggregation.arrayFilteredByConditions)(data, [["year", "1998"], ["emission", e.target.value]]);
-	    var chartDataValues = (0, _aggregation.arrayToUniqValuesByKey)(chartData, "value");
-	    var chartLabels = (0, _aggregation.arrayToUniqValuesByKey)(data, "name");
-
-	    var chartDataInfo = {
-	      labels: chartLabels,
-	      datasets: [{
-	        data: chartDataValues
-	      }]
-	    };
-
-	    var chartOptions = {
-	      scales: {
-	        xAxes: [{
-	          stacked: true
-	        }],
-	        yAxes: [{
-	          stacked: true
-	        }]
-	      }
-	    };
-
-	    var chartDisplay = new _chart2.default(ctx, {
-	      type: 'bar',
-	      data: chartDataInfo,
-	      options: chartOptions
-	    });
-
-	    dispatch({ type: "UPDATE_CHART", chartDisplay: chartDisplay });
-	  };
-	  var chartDisplay = _react2.default.DOM.canvas({ id: "chart", style: { height: "500px" } });
-	  var emissionNames = (0, _aggregation.arrayToUniqValuesByKey)(data, "emission");
-
-	  var buttons = emissionNames.map(function (emissionName, index) {
-	    return _react2.default.createElement(
-	      "button",
-	      { key: index, onClick: onFilterClick, value: emissionName },
-	      emissionName
-	    );
-	  });
 
 	  return _react2.default.createElement(
 	    "main",
-	    null,
-	    _react2.default.createElement(
-	      "div",
-	      { className: "button-split" },
-	      buttons
-	    ),
+	    { className: "container" },
 	    chartDisplay
 	  );
 	};
