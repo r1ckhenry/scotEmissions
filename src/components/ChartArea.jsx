@@ -50,7 +50,7 @@ class ChartArea extends Component {
   }
 
   getBarData() {
-    const dataFilteredByConditons = arrayFilteredByConditions( this.props.data, [[ "year", "1998" ], [ "emission", this.props.emissionName ]] );
+    const dataFilteredByConditons = arrayFilteredByConditions( this.props.data, [[ "year", this.props.year ], [ "emission", this.props.emissionName ]] );
     const dataMappedByKey = arrayToUniqValuesByKey( dataFilteredByConditons, "value" );
     return dataMappedByKey;
   }

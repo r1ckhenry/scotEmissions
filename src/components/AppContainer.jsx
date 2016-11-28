@@ -58,8 +58,8 @@ class AppContainer extends Component {
   //   this.props.dispatch( { type: "UPDATE_CHART", chartDisplay } );
   // }
 
-  onRangeClick( e ) {
-
+  onRangeChange( e ) {
+    this.props.dispatch( { type: "UPDATE_YEAR", year: e.target.value } );
   }
 
   onFilterClick( e ) {
@@ -89,10 +89,11 @@ class AppContainer extends Component {
         <Filter data={ this.props.data } emissionName={ this.props.emissionName } onFilterClick={ this.onFilterClick.bind( this ) } />
         <ChartArea
           data={ this.props.data }
+          year={ this.props.year }
           emissionName={ this.props.emissionName }
           chart={ this.props.chart }
           dispatch={ this.props.dispatch } />
-        <Range years={ this.props.years } />
+        <Range onRangeChange={ this.onRangeChange.bind( this ) } years={ this.props.years } />
       </div>
     )
   }

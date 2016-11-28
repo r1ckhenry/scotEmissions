@@ -23278,7 +23278,7 @@
 	  }
 
 	  _createClass(AppContainer, [{
-	    key: "onRangeClick",
+	    key: "onRangeChange",
 
 
 	    // updateChart() {
@@ -23328,7 +23328,9 @@
 	    //   this.props.dispatch( { type: "UPDATE_CHART", chartDisplay } );
 	    // }
 
-	    value: function onRangeClick(e) {}
+	    value: function onRangeChange(e) {
+	      this.props.dispatch({ type: "UPDATE_YEAR", year: e.target.value });
+	    }
 	  }, {
 	    key: "onFilterClick",
 	    value: function onFilterClick(e) {
@@ -23360,10 +23362,11 @@
 	        _react2.default.createElement(_Filter2.default, { data: this.props.data, emissionName: this.props.emissionName, onFilterClick: this.onFilterClick.bind(this) }),
 	        _react2.default.createElement(_ChartArea2.default, {
 	          data: this.props.data,
+	          year: this.props.year,
 	          emissionName: this.props.emissionName,
 	          chart: this.props.chart,
 	          dispatch: this.props.dispatch }),
-	        _react2.default.createElement(_Range2.default, { years: this.props.years })
+	        _react2.default.createElement(_Range2.default, { onRangeChange: this.onRangeChange.bind(this), years: this.props.years })
 	      );
 	    }
 	  }]);
@@ -40679,7 +40682,7 @@
 	  }, {
 	    key: "getBarData",
 	    value: function getBarData() {
-	      var dataFilteredByConditons = (0, _aggregation.arrayFilteredByConditions)(this.props.data, [["year", "1998"], ["emission", this.props.emissionName]]);
+	      var dataFilteredByConditons = (0, _aggregation.arrayFilteredByConditions)(this.props.data, [["year", this.props.year], ["emission", this.props.emissionName]]);
 	      var dataMappedByKey = (0, _aggregation.arrayToUniqValuesByKey)(dataFilteredByConditons, "value");
 	      return dataMappedByKey;
 	    }
@@ -67391,11 +67394,13 @@
 	  value: true
 	});
 	var reducer = function reducer() {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { data: null, emissionName: "CH4", chart: null };
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { data: null, emissionName: "CH4", chart: null, year: "1990" };
 	  var action = arguments[1];
 
 
 	  switch (action.type) {
+	    case "UPDATE_YEAR":
+	      return Object.assign({}, state, { year: action.year });
 	    case "ADD_CHART":
 	      return Object.assign({}, state, { chart: action.chart });
 	    case "ADD_DATASET":
@@ -67426,7 +67431,8 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var range = function range(_ref) {
-	  var years = _ref.years;
+	  var years = _ref.years,
+	      onRangeChange = _ref.onRangeChange;
 
 
 	  var options = years.map(function (year, index) {
@@ -67442,7 +67448,7 @@
 	    { className: "range-slider" },
 	    _react2.default.createElement(
 	      "select",
-	      null,
+	      { onChange: onRangeChange },
 	      options
 	    )
 	  );

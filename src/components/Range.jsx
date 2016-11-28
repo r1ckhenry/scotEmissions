@@ -1,6 +1,6 @@
 import React from "react"
 
-const range = ( { years } ) => {
+const range = ( { years, onRangeChange } ) => {
 
   const options = years.map( ( year, index ) => {
     return <option value={ year } key={ index }>{ year }</option>
@@ -8,7 +8,7 @@ const range = ( { years } ) => {
 
   return(
     <form className="range-slider">
-      <select>
+      <select onChange={ onRangeChange }>
         { options }
       </select>
     </form>
