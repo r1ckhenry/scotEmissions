@@ -2,12 +2,13 @@ import React from "react";
 
 import { arrayToUniqValuesByKey } from "../libs/aggregation";
 
-const Filter = ( { data, dispatch, onFilterClick } ) => {
+const Filter = ( { data, onFilterClick, emissionName } ) => {
 
-  var emissionNames = arrayToUniqValuesByKey( data, "emission" );
+  var allEmissionNames = arrayToUniqValuesByKey( data, "emission" );
 
-  const buttons = emissionNames.map( ( emissionName, index ) => {
-    return( <button key={index} className="button" onClick={ onFilterClick } value={ emissionName } >{ emissionName }</button> )
+  const buttons = allEmissionNames.map( ( indEmissionName, index ) => {
+    let classes = indEmissionName === emissionName ? "button button-active" : "button"
+    return( <button key={index} className={ classes } onClick={ onFilterClick } value={ indEmissionName } >{ indEmissionName }</button> )
   })
 
   return(
@@ -15,11 +16,6 @@ const Filter = ( { data, dispatch, onFilterClick } ) => {
       <div className="button-split">
         { buttons }
       </div>
-      <form>
-        <button>Up</button>
-        <input type="number" min="0" max="10" step="2" />
-        <button>Down</button>
-      </form>
     </nav>
   )
 

@@ -52,6 +52,10 @@ body, html {
   border-right: none;
 }
 
+.button-active {
+  background-color: red !important;
+}
+
 .container {
   width: 80%;
   height: 80%;
@@ -82,4 +86,11 @@ body, html {
 
 .header-subtitle {
   font-weight: 100;
+}
+
+.range-slider {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
 }

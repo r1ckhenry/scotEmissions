@@ -1,8 +1,8 @@
-const reducer = ( state = { data: null, emissionName: null, chart: null }, action ) => {
+const reducer = ( state = { data: null, emissionName: "CH4", chart: null }, action ) => {
 
   switch ( action.type ) {
-    case "UPDATE_CHART":
-      return Object.assign( {}, state, { chart: action.chartDisplay } )
+    case "ADD_CHART":
+      return Object.assign( {}, state, { chart: action.chart } )
     case "ADD_DATASET":
       return Object.assign( {}, state, { data: action.data } )
     case "UPDATE_EMISSION_NAME":

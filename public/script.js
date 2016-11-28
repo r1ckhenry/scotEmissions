@@ -23234,6 +23234,8 @@
 	  value: true
 	});
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -23246,6 +23248,10 @@
 
 	var _Filter2 = _interopRequireDefault(_Filter);
 
+	var _Range = __webpack_require__(371);
+
+	var _Range2 = _interopRequireDefault(_Range);
+
 	var _ChartArea = __webpack_require__(213);
 
 	var _ChartArea2 = _interopRequireDefault(_ChartArea);
@@ -23256,73 +23262,119 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var AppContainer = function AppContainer(_ref) {
-	  var data = _ref.data,
-	      chart = _ref.chart,
-	      dispatch = _ref.dispatch;
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var AppContainer = function (_Component) {
+	  _inherits(AppContainer, _Component);
+
+	  function AppContainer() {
+	    _classCallCheck(this, AppContainer);
+
+	    return _possibleConstructorReturn(this, (AppContainer.__proto__ || Object.getPrototypeOf(AppContainer)).apply(this, arguments));
+	  }
+
+	  _createClass(AppContainer, [{
+	    key: "onRangeClick",
 
 
-	  var onFilterClick = function onFilterClick(e) {
+	    // updateChart() {
+	    //
+	    //   const ctx = document.getElementById( "chart" );
+	    //   ctx.width = "100%";
+	    //
+	    //   const chartData = arrayFilteredByConditions( this.props.data, [[ "year", "1998" ], [ "emission", this.props.emissionName ]] );
+	    //   const chartDataValues = arrayToUniqValuesByKey( chartData, "value" );
+	    //   const chartLabels = arrayToUniqValuesByKey( this.props.data, "name" )
+	    //
+	    //   var chartDataInfo = {
+	    //     labels: chartLabels,
+	    //     datasets: [
+	    //       {
+	    //         data: chartDataValues,
+	    //       }
+	    //     ]
+	    //   };
+	    //
+	    //   const chartOptions = {
+	    //     scales: {
+	    //         xAxes: [{
+	    //             stacked: true,
+	    //             ticks: {
+	    //               autoSkip: false,
+	    //               maxRotation: 0,
+	    //               minRotation: 90
+	    //             }
+	    //         }],
+	    //         yAxes: [{
+	    //             stacked: true
+	    //         }]
+	    //     }
+	    //   }
+	    //
+	    //   Chart.defaults.global.defaultFontColor = "#fff";
+	    //   Chart.defaults.global.defaultFontFamily = "'Lato', sans-serif";
+	    //   Chart.defaults.global.legend.display = false;
+	    //
+	    //   const chartDisplay = new Chart(ctx, {
+	    //     type: 'bar',
+	    //     data: chartDataInfo,
+	    //     options: chartOptions
+	    //   });
+	    //
+	    //   this.props.dispatch( { type: "UPDATE_CHART", chartDisplay } );
+	    // }
 
-	    if (chart) {
-	      chart.destroy();
+	    value: function onRangeClick(e) {}
+	  }, {
+	    key: "onFilterClick",
+	    value: function onFilterClick(e) {
+	      this.props.dispatch({ type: "UPDATE_EMISSION_NAME", emissionName: e.target.value });
+
+	      // const chart = this.props.chart;
+	      // chart.data.datasets[0].data = this.getBarData();
+	      // chart.update();
+	      // if ( this.props.chart ) {
+	      //   this.props.chart.destroy();
+	      // }
+
+	      // this.updateChart();
 	    }
+	  }, {
+	    key: "componentDidMount",
+	    value: function componentDidMount() {
+	      // this.updateChart()
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      console.log(this.props, "this props render");
+	      // this.updateChart()
+	      return _react2.default.createElement(
+	        "div",
+	        null,
+	        _react2.default.createElement(_Header2.default, { title: "Scotland's Emissions", inverseTitle: "in graphs", subtitle: "This is some placeholder text" }),
+	        _react2.default.createElement(_Filter2.default, { data: this.props.data, emissionName: this.props.emissionName, onFilterClick: this.onFilterClick.bind(this) }),
+	        _react2.default.createElement(_ChartArea2.default, {
+	          data: this.props.data,
+	          emissionName: this.props.emissionName,
+	          chart: this.props.chart,
+	          dispatch: this.props.dispatch }),
+	        _react2.default.createElement(_Range2.default, { years: this.props.years })
+	      );
+	    }
+	  }]);
 
-	    var ctx = document.getElementById("chart");
-	    ctx.width = "100%";
-
-	    var chartData = (0, _aggregation.arrayFilteredByConditions)(data, [["year", "1998"], ["emission", e.target.value]]);
-	    var chartDataValues = (0, _aggregation.arrayToUniqValuesByKey)(chartData, "value");
-	    var chartLabels = (0, _aggregation.arrayToUniqValuesByKey)(data, "name");
-
-	    var chartDataInfo = {
-	      labels: chartLabels,
-	      datasets: [{
-	        data: chartDataValues
-	      }]
-	    };
-
-	    var chartOptions = {
-	      scales: {
-	        xAxes: [{
-	          stacked: true,
-	          ticks: {
-	            autoSkip: false,
-	            maxRotation: 0,
-	            minRotation: 90
-	          }
-	        }],
-	        yAxes: [{
-	          stacked: true
-	        }]
-	      }
-	    };
-
-	    Chart.defaults.global.defaultFontColor = "#fff";
-	    Chart.defaults.global.defaultFontFamily = "'Lato', sans-serif";
-	    Chart.defaults.global.legend.display = false;
-
-	    var chartDisplay = new Chart(ctx, {
-	      type: 'bar',
-	      data: chartDataInfo,
-	      options: chartOptions
-	    });
-
-	    dispatch({ type: "UPDATE_CHART", chartDisplay: chartDisplay });
-	  };
-
-	  return _react2.default.createElement(
-	    "div",
-	    null,
-	    _react2.default.createElement(_Header2.default, { title: "Scotland's Emissions", inverseTitle: "in graphs", subtitle: "This is some placeholder text" }),
-	    _react2.default.createElement(_Filter2.default, { data: data, dispatch: dispatch, onFilterClick: onFilterClick }),
-	    _react2.default.createElement(_ChartArea2.default, { data: data, chart: chart, dispatch: dispatch })
-	  );
-	};
+	  return AppContainer;
+	}(_react.Component);
 
 	var mapStateToProps = function mapStateToProps(state) {
-	  console.log(state, "state");
-	  return state;
+	  // console.log( state, "state" )
+	  var years = (0, _aggregation.arrayToUniqValuesByKey)(state.data, "year");
+	  return Object.assign({}, state, { years: years });
 	};
 
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(AppContainer);
@@ -23393,17 +23445,18 @@
 
 	var Filter = function Filter(_ref) {
 	  var data = _ref.data,
-	      dispatch = _ref.dispatch,
-	      onFilterClick = _ref.onFilterClick;
+	      onFilterClick = _ref.onFilterClick,
+	      emissionName = _ref.emissionName;
 
 
-	  var emissionNames = (0, _aggregation.arrayToUniqValuesByKey)(data, "emission");
+	  var allEmissionNames = (0, _aggregation.arrayToUniqValuesByKey)(data, "emission");
 
-	  var buttons = emissionNames.map(function (emissionName, index) {
+	  var buttons = allEmissionNames.map(function (indEmissionName, index) {
+	    var classes = indEmissionName === emissionName ? "button button-active" : "button";
 	    return _react2.default.createElement(
 	      "button",
-	      { key: index, className: "button", onClick: onFilterClick, value: emissionName },
-	      emissionName
+	      { key: index, className: classes, onClick: onFilterClick, value: indEmissionName },
+	      indEmissionName
 	    );
 	  });
 
@@ -23414,21 +23467,6 @@
 	      "div",
 	      { className: "button-split" },
 	      buttons
-	    ),
-	    _react2.default.createElement(
-	      "form",
-	      null,
-	      _react2.default.createElement(
-	        "button",
-	        null,
-	        "Up"
-	      ),
-	      _react2.default.createElement("input", { type: "number", min: "0", max: "10", step: "2" }),
-	      _react2.default.createElement(
-	        "button",
-	        null,
-	        "Down"
-	      )
 	    )
 	  );
 	};
@@ -40562,9 +40600,15 @@
 	  value: true
 	});
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(32);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
 
 	var _chart = __webpack_require__(214);
 
@@ -40574,27 +40618,136 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var ChartArea = function ChartArea(_ref) {
-	  var data = _ref.data,
-	      chart = _ref.chart,
-	      dispatch = _ref.dispatch;
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-	  var chartDisplay = _react2.default.DOM.canvas({ id: "chart", style: { height: "100%" } });
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	  // const emissionNames = arrayToUniqValuesByKey( data, "emission" );
-	  //
-	  // const buttons = emissionNames.map( ( emissionName, index ) => {
-	  //   return( <button className="button" key={index} onClick={ onFilterClick } value={ emissionName } >{ emissionName }</button> )
-	  // })
+	var ChartArea = function (_Component) {
+	  _inherits(ChartArea, _Component);
 
+	  function ChartArea() {
+	    _classCallCheck(this, ChartArea);
 
-	  return _react2.default.createElement(
-	    "main",
-	    { className: "container" },
-	    chartDisplay
-	  );
-	};
+	    return _possibleConstructorReturn(this, (ChartArea.__proto__ || Object.getPrototypeOf(ChartArea)).apply(this, arguments));
+	  }
+
+	  _createClass(ChartArea, [{
+	    key: "initializeChart",
+	    value: function initializeChart() {
+	      var labels = (0, _aggregation.arrayToUniqValuesByKey)(this.props.data, "name");
+
+	      var chartData = {
+	        labels: labels,
+	        datasets: [{
+	          data: this.getBarData()
+	        }]
+	      };
+
+	      var chartOptions = {
+	        scales: {
+	          xAxes: [{
+	            stacked: true,
+	            ticks: {
+	              autoSkip: false,
+	              maxRotation: 0,
+	              minRotation: 90
+	            }
+	          }],
+	          yAxes: [{
+	            stacked: true
+	          }]
+	        }
+	      };
+
+	      var el = _reactDom2.default.findDOMNode(this);
+	      var ctx = el.getContext("2d");
+	      var chart = new _chart2.default(ctx, {
+	        type: 'bar',
+	        data: chartData,
+	        options: chartOptions
+	      });
+
+	      this.props.dispatch({ type: "ADD_CHART", chart: chart });
+	    }
+	  }, {
+	    key: "componentDidMount",
+	    value: function componentDidMount() {
+	      this.initializeChart();
+	    }
+	  }, {
+	    key: "getBarData",
+	    value: function getBarData() {
+	      var dataFilteredByConditons = (0, _aggregation.arrayFilteredByConditions)(this.props.data, [["year", "1998"], ["emission", this.props.emissionName]]);
+	      var dataMappedByKey = (0, _aggregation.arrayToUniqValuesByKey)(dataFilteredByConditons, "value");
+	      return dataMappedByKey;
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+
+	      if (this.props.chart) {
+	        var chart = this.props.chart;
+	        chart.data.datasets[0].data = this.getBarData();
+	        chart.update();
+	      }
+
+	      return _react2.default.DOM.canvas({ id: "chart", style: { height: "100%" } });
+	    }
+
+	    // const ctx = document.getElementById( "chart" );
+	    //
+	    // if ( ctx ) {
+	    //
+	    //   ctx.width = "100%";
+	    //
+	    //   const chartData = arrayFilteredByConditions( data, [[ "year", "1998" ], [ "emission", emissionName ]] );
+	    //   const chartDataValues = arrayToUniqValuesByKey( chartData, "value" );
+	    //   const chartLabels = arrayToUniqValuesByKey( data, "name" )
+	    //
+	    //   var chartDataInfo = {
+	    //     labels: chartLabels,
+	    //     datasets: [
+	    //       {
+	    //         data: chartDataValues,
+	    //       }
+	    //     ]
+	    //   };
+	    //
+	    //   const chartOptions = {
+	    //     scales: {
+	    //         xAxes: [{
+	    //             stacked: true,
+	    //             ticks: {
+	    //               autoSkip: false,
+	    //               maxRotation: 0,
+	    //               minRotation: 90
+	    //             }
+	    //         }],
+	    //         yAxes: [{
+	    //             stacked: true
+	    //         }]
+	    //     }
+	    //   }
+	    //
+	    //   Chart.defaults.global.defaultFontColor = "#fff";
+	    //   Chart.defaults.global.defaultFontFamily = "'Lato', sans-serif";
+	    //   Chart.defaults.global.legend.display = false;
+	    //
+	    //   const chartDisplay = new Chart(ctx, {
+	    //     type: 'bar',
+	    //     data: chartDataInfo,
+	    //     options: chartOptions
+	    //   });
+	    //
+	    //
+	    // }
+
+	  }]);
+
+	  return ChartArea;
+	}(_react.Component);
 
 	exports.default = ChartArea;
 
@@ -67238,13 +67391,13 @@
 	  value: true
 	});
 	var reducer = function reducer() {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { data: null, emissionName: null, chart: null };
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { data: null, emissionName: "CH4", chart: null };
 	  var action = arguments[1];
 
 
 	  switch (action.type) {
-	    case "UPDATE_CHART":
-	      return Object.assign({}, state, { chart: action.chartDisplay });
+	    case "ADD_CHART":
+	      return Object.assign({}, state, { chart: action.chart });
 	    case "ADD_DATASET":
 	      return Object.assign({}, state, { data: action.data });
 	    case "UPDATE_EMISSION_NAME":
@@ -67255,6 +67408,47 @@
 	};
 
 	exports.default = reducer;
+
+/***/ },
+/* 371 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var range = function range(_ref) {
+	  var years = _ref.years;
+
+
+	  var options = years.map(function (year, index) {
+	    return _react2.default.createElement(
+	      "option",
+	      { value: year, key: index },
+	      year
+	    );
+	  });
+
+	  return _react2.default.createElement(
+	    "form",
+	    { className: "range-slider" },
+	    _react2.default.createElement(
+	      "select",
+	      null,
+	      options
+	    )
+	  );
+	};
+
+	exports.default = range;
 
 /***/ }
 /******/ ]);
