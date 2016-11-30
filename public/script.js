@@ -23252,6 +23252,10 @@
 
 	var _Range2 = _interopRequireDefault(_Range);
 
+	var _Legend = __webpack_require__(372);
+
+	var _Legend2 = _interopRequireDefault(_Legend);
+
 	var _ChartArea = __webpack_require__(213);
 
 	var _ChartArea2 = _interopRequireDefault(_ChartArea);
@@ -23279,55 +23283,6 @@
 
 	  _createClass(AppContainer, [{
 	    key: "onRangeChange",
-
-
-	    // updateChart() {
-	    //
-	    //   const ctx = document.getElementById( "chart" );
-	    //   ctx.width = "100%";
-	    //
-	    //   const chartData = arrayFilteredByConditions( this.props.data, [[ "year", "1998" ], [ "emission", this.props.emissionName ]] );
-	    //   const chartDataValues = arrayToUniqValuesByKey( chartData, "value" );
-	    //   const chartLabels = arrayToUniqValuesByKey( this.props.data, "name" )
-	    //
-	    //   var chartDataInfo = {
-	    //     labels: chartLabels,
-	    //     datasets: [
-	    //       {
-	    //         data: chartDataValues,
-	    //       }
-	    //     ]
-	    //   };
-	    //
-	    //   const chartOptions = {
-	    //     scales: {
-	    //         xAxes: [{
-	    //             stacked: true,
-	    //             ticks: {
-	    //               autoSkip: false,
-	    //               maxRotation: 0,
-	    //               minRotation: 90
-	    //             }
-	    //         }],
-	    //         yAxes: [{
-	    //             stacked: true
-	    //         }]
-	    //     }
-	    //   }
-	    //
-	    //   Chart.defaults.global.defaultFontColor = "#fff";
-	    //   Chart.defaults.global.defaultFontFamily = "'Lato', sans-serif";
-	    //   Chart.defaults.global.legend.display = false;
-	    //
-	    //   const chartDisplay = new Chart(ctx, {
-	    //     type: 'bar',
-	    //     data: chartDataInfo,
-	    //     options: chartOptions
-	    //   });
-	    //
-	    //   this.props.dispatch( { type: "UPDATE_CHART", chartDisplay } );
-	    // }
-
 	    value: function onRangeChange(e) {
 	      this.props.dispatch({ type: "UPDATE_YEAR", year: e.target.value });
 	    }
@@ -23335,41 +23290,32 @@
 	    key: "onFilterClick",
 	    value: function onFilterClick(e) {
 	      this.props.dispatch({ type: "UPDATE_EMISSION_NAME", emissionName: e.target.value });
-
-	      // const chart = this.props.chart;
-	      // chart.data.datasets[0].data = this.getBarData();
-	      // chart.update();
-	      // if ( this.props.chart ) {
-	      //   this.props.chart.destroy();
-	      // }
-
-	      // this.updateChart();
-	    }
-	  }, {
-	    key: "componentDidMount",
-	    value: function componentDidMount() {
-	      // this.updateChart()
 	    }
 	  }, {
 	    key: "render",
 	    value: function render() {
-	      console.log(this.props, "this props render");
-	      // this.updateChart()
+
+	      var sectorNames = (0, _aggregation.arrayToUniqValuesByKey)(this.props.data, "name");
+	      var sectorColors = ["#48CFAD", "#967ADC", "#4A89DC", "#ED5565", "#656D78", "#FFCE54", "#4FC1E9", "#FC6E51", "#A0D648", "#EC87C0"];
+
 	      return _react2.default.createElement(
 	        "div",
 	        null,
-	        _react2.default.createElement(_Header2.default, { title: "Scotland's Emissions", inverseTitle: "in graphs", subtitle: "This is some placeholder text" }),
+	        _react2.default.createElement(_Header2.default, { title: "Scotlands Emissions", inverseTitle: "in graphs", subtitle: "These set of charts show Scotlands emissions from 1990 until 2014." }),
 	        _react2.default.createElement(_Filter2.default, { data: this.props.data, emissionName: this.props.emissionName, onFilterClick: this.onFilterClick.bind(this) }),
 	        _react2.default.createElement(
 	          "main",
 	          { className: "main" },
 	          _react2.default.createElement(_ChartArea2.default, {
+	            sectorNames: sectorNames,
+	            sectorColors: sectorColors,
 	            data: this.props.data,
 	            year: this.props.year,
 	            emissionName: this.props.emissionName,
 	            chart: this.props.chart,
 	            dispatch: this.props.dispatch })
 	        ),
+	        _react2.default.createElement(_Legend2.default, { sectorNames: sectorNames, sectorColors: sectorColors }),
 	        _react2.default.createElement(_Range2.default, { onRangeChange: this.onRangeChange.bind(this), years: this.props.years })
 	      );
 	    }
@@ -23379,7 +23325,7 @@
 	}(_react.Component);
 
 	var mapStateToProps = function mapStateToProps(state) {
-	  // console.log( state, "state" )
+	  console.log(state, "state");
 	  var years = (0, _aggregation.arrayToUniqValuesByKey)(state.data, "year");
 	  return Object.assign({}, state, { years: years });
 	};
@@ -40689,13 +40635,12 @@
 	    value: function getData() {
 	      var _this2 = this;
 
-	      var sectorNames = (0, _aggregation.arrayToUniqValuesByKey)(this.props.data, "name");
-	      var sectorColors = ["#48CFAD", "#967ADC", "#4A89DC", "#ED5565", "#656D78", "#FFCE54", "#4FC1E9", "#FC6E51", "#A0D648", "#EC87C0"];
+	      console.log("props", this.props);
 
-	      return sectorNames.map(function (sectorName, index) {
+	      return this.props.sectorNames.map(function (sectorName, index) {
 	        var dataFilteredByConditons = (0, _aggregation.arrayFilteredByConditions)(_this2.props.data, [["name", sectorName], ["emission", _this2.props.emissionName]]);
 	        var dataMappedByKey = (0, _aggregation.arrayToUniqValuesByKey)(dataFilteredByConditons, "value");
-	        return { data: dataMappedByKey, fill: false, borderColor: sectorColors[index], label: sectorName };
+	        return { data: dataMappedByKey, fill: false, borderColor: _this2.props.sectorColors[index], label: sectorName };
 	      });
 	    }
 	  }, {
@@ -67422,6 +67367,49 @@
 	};
 
 	exports.default = range;
+
+/***/ },
+/* 372 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Legend = function Legend(_ref) {
+	  var sectorNames = _ref.sectorNames,
+	      sectorColors = _ref.sectorColors;
+
+
+	  var keys = sectorNames.map(function (sectorName, index) {
+	    return _react2.default.createElement(
+	      "div",
+	      { className: "legend-item", key: index },
+	      _react2.default.createElement("div", { className: "legend-key", style: { backgroundColor: sectorColors[index] } }),
+	      _react2.default.createElement(
+	        "div",
+	        { className: "legend-value" },
+	        sectorName
+	      )
+	    );
+	  });
+
+	  return _react2.default.createElement(
+	    "aside",
+	    { className: "aside" },
+	    keys
+	  );
+	};
+
+	exports.default = Legend;
 
 /***/ }
 /******/ ]);

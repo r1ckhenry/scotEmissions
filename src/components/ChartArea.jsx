@@ -49,13 +49,13 @@ class ChartArea extends Component {
   }
 
   getData() {
-    const sectorNames = arrayToUniqValuesByKey( this.props.data, "name" );
-    const sectorColors = [ "#48CFAD", "#967ADC", "#4A89DC", "#ED5565", "#656D78", "#FFCE54", "#4FC1E9", "#FC6E51", "#A0D648", "#EC87C0" ]
 
-    return sectorNames.map( ( sectorName, index ) => {
+    console.log( "props", this.props )
+
+    return this.props.sectorNames.map( ( sectorName, index ) => {
       const dataFilteredByConditons = arrayFilteredByConditions( this.props.data, [["name", sectorName],[ "emission", this.props.emissionName ]] );
       const dataMappedByKey = arrayToUniqValuesByKey( dataFilteredByConditons, "value" );
-      return { data: dataMappedByKey, fill: false, borderColor: sectorColors[index], label: sectorName }
+      return { data: dataMappedByKey, fill: false, borderColor: this.props.sectorColors[index], label: sectorName }
     })
   }
 
