@@ -451,117 +451,117 @@ S92000003,2014,Count,Mt Co2Equiv,0.182,Residential,HFCs
 S92000003,2008,Count,Mt Co2Equiv,0.578,Energy Supply,CH4
 S92000003,2014,Count,Mt Co2Equiv,0.022,Residential,N2O
 S92000003,2008,Count,Mt Co2Equiv,19.479,Energy Supply,CO2
-S92000003,1990,Count,Mt Co2Equiv,0.099,Transport (excluding international aviation and shipping),CH4
+S92000003,1990,Count,Mt Co2Equiv,0.099,Transport (exc. int. aviation & shipping),CH4
 S92000003,2008,Count,Mt Co2Equiv,0.098,Energy Supply,N2O
 S92000003,2009,Count,Mt Co2Equiv,0.549,Energy Supply,CH4
-S92000003,1990,Count,Mt Co2Equiv,10.509,Transport (excluding international aviation and shipping),CO2
+S92000003,1990,Count,Mt Co2Equiv,10.509,Transport (exc. int. aviation & shipping),CO2
 S92000003,2009,Count,Mt Co2Equiv,18.114,Energy Supply,CO2
-S92000003,1990,Count,Mt Co2Equiv,0.128,Transport (excluding international aviation and shipping),N2O
+S92000003,1990,Count,Mt Co2Equiv,0.128,Transport (exc. int. aviation & shipping),N2O
 S92000003,2009,Count,Mt Co2Equiv,0.095,Energy Supply,N2O
-S92000003,1995,Count,Mt Co2Equiv,0.073,Transport (excluding international aviation and shipping),CH4
+S92000003,1995,Count,Mt Co2Equiv,0.073,Transport (exc. int. aviation & shipping),CH4
 S92000003,2010,Count,Mt Co2Equiv,0.544,Energy Supply,CH4
-S92000003,1995,Count,Mt Co2Equiv,10.485,Transport (excluding international aviation and shipping),CO2
+S92000003,1995,Count,Mt Co2Equiv,10.485,Transport (exc. int. aviation & shipping),CO2
 S92000003,2010,Count,Mt Co2Equiv,20.215,Energy Supply,CO2
-S92000003,1995,Count,Mt Co2Equiv,0.166,Transport (excluding international aviation and shipping),N2O
-S92000003,1998,Count,Mt Co2Equiv,0.058,Transport (excluding international aviation and shipping),CH4
+S92000003,1995,Count,Mt Co2Equiv,0.166,Transport (exc. int. aviation & shipping),N2O
+S92000003,1998,Count,Mt Co2Equiv,0.058,Transport (exc. int. aviation & shipping),CH4
 S92000003,2010,Count,Mt Co2Equiv,0.108,Energy Supply,N2O
-S92000003,1998,Count,Mt Co2Equiv,10.937,Transport (excluding international aviation and shipping),CO2
+S92000003,1998,Count,Mt Co2Equiv,10.937,Transport (exc. int. aviation & shipping),CO2
 S92000003,2011,Count,Mt Co2Equiv,0.569,Energy Supply,CH4
-S92000003,1998,Count,Mt Co2Equiv,0.149,Transport (excluding international aviation and shipping),N2O
+S92000003,1998,Count,Mt Co2Equiv,0.149,Transport (exc. int. aviation & shipping),N2O
 S92000003,2011,Count,Mt Co2Equiv,16.343,Energy Supply,CO2
-S92000003,1999,Count,Mt Co2Equiv,0.053,Transport (excluding international aviation and shipping),CH4
+S92000003,1999,Count,Mt Co2Equiv,0.053,Transport (exc. int. aviation & shipping),CH4
 S92000003,2011,Count,Mt Co2Equiv,0.088,Energy Supply,N2O
-S92000003,1999,Count,Mt Co2Equiv,11.022,Transport (excluding international aviation and shipping),CO2
+S92000003,1999,Count,Mt Co2Equiv,11.022,Transport (exc. int. aviation & shipping),CO2
 S92000003,2012,Count,Mt Co2Equiv,0.51,Energy Supply,CH4
-S92000003,1999,Count,Mt Co2Equiv,0.147,Transport (excluding international aviation and shipping),N2O
+S92000003,1999,Count,Mt Co2Equiv,0.147,Transport (exc. int. aviation & shipping),N2O
 S92000003,2012,Count,Mt Co2Equiv,16.887,Energy Supply,CO2
-S92000003,2000,Count,Mt Co2Equiv,0.048,Transport (excluding international aviation and shipping),CH4
+S92000003,2000,Count,Mt Co2Equiv,0.048,Transport (exc. int. aviation & shipping),CH4
 S92000003,2012,Count,Mt Co2Equiv,0.096,Energy Supply,N2O
-S92000003,2000,Count,Mt Co2Equiv,10.864,Transport (excluding international aviation and shipping),CO2
+S92000003,2000,Count,Mt Co2Equiv,10.864,Transport (exc. int. aviation & shipping),CO2
 S92000003,2013,Count,Mt Co2Equiv,0.488,Energy Supply,CH4
-S92000003,2000,Count,Mt Co2Equiv,0.143,Transport (excluding international aviation and shipping),N2O
+S92000003,2000,Count,Mt Co2Equiv,0.143,Transport (exc. int. aviation & shipping),N2O
 S92000003,2013,Count,Mt Co2Equiv,15.405,Energy Supply,CO2
-S92000003,2001,Count,Mt Co2Equiv,0.042,Transport (excluding international aviation and shipping),CH4
+S92000003,2001,Count,Mt Co2Equiv,0.042,Transport (exc. int. aviation & shipping),CH4
 S92000003,2013,Count,Mt Co2Equiv,0.09,Energy Supply,N2O
-S92000003,2001,Count,Mt Co2Equiv,10.846,Transport (excluding international aviation and shipping),CO2
+S92000003,2001,Count,Mt Co2Equiv,10.846,Transport (exc. int. aviation & shipping),CO2
 S92000003,2014,Count,Mt Co2Equiv,0.464,Energy Supply,CH4
-S92000003,2001,Count,Mt Co2Equiv,0.135,Transport (excluding international aviation and shipping),N2O
+S92000003,2001,Count,Mt Co2Equiv,0.135,Transport (exc. int. aviation & shipping),N2O
 S92000003,2014,Count,Mt Co2Equiv,13.297,Energy Supply,CO2
-S92000003,2002,Count,Mt Co2Equiv,0.038,Transport (excluding international aviation and shipping),CH4
-S92000003,2002,Count,Mt Co2Equiv,11.174,Transport (excluding international aviation and shipping),CO2
+S92000003,2002,Count,Mt Co2Equiv,0.038,Transport (exc. int. aviation & shipping),CH4
+S92000003,2002,Count,Mt Co2Equiv,11.174,Transport (exc. int. aviation & shipping),CO2
 S92000003,2014,Count,Mt Co2Equiv,0.087,Energy Supply,N2O
-S92000003,2002,Count,Mt Co2Equiv,0.132,Transport (excluding international aviation and shipping),N2O
+S92000003,2002,Count,Mt Co2Equiv,0.132,Transport (exc. int. aviation & shipping),N2O
 S92000003,1990,Count,Mt Co2Equiv,0.001,Forestry,CH4
-S92000003,2003,Count,Mt Co2Equiv,0.034,Transport (excluding international aviation and shipping),CH4
+S92000003,2003,Count,Mt Co2Equiv,0.034,Transport (exc. int. aviation & shipping),CH4
 S92000003,1990,Count,Mt Co2Equiv,8.789,Forestry,CO2
-S92000003,2003,Count,Mt Co2Equiv,11.213,Transport (excluding international aviation and shipping),CO2
+S92000003,2003,Count,Mt Co2Equiv,11.213,Transport (exc. int. aviation & shipping),CO2
 S92000003,1990,Count,Mt Co2Equiv,0.026,Forestry,N2O
-S92000003,2003,Count,Mt Co2Equiv,0.125,Transport (excluding international aviation and shipping),N2O
+S92000003,2003,Count,Mt Co2Equiv,0.125,Transport (exc. int. aviation & shipping),N2O
 S92000003,1995,Count,Mt Co2Equiv,0.008,Forestry,CH4
-S92000003,2004,Count,Mt Co2Equiv,0.031,Transport (excluding international aviation and shipping),CH4
+S92000003,2004,Count,Mt Co2Equiv,0.031,Transport (exc. int. aviation & shipping),CH4
 S92000003,1995,Count,Mt Co2Equiv,9.525,Forestry,CO2
-S92000003,2004,Count,Mt Co2Equiv,11.315,Transport (excluding international aviation and shipping),CO2
+S92000003,2004,Count,Mt Co2Equiv,11.315,Transport (exc. int. aviation & shipping),CO2
 S92000003,1995,Count,Mt Co2Equiv,0.03,Forestry,N2O
-S92000003,2004,Count,Mt Co2Equiv,0.12,Transport (excluding international aviation and shipping),N2O
+S92000003,2004,Count,Mt Co2Equiv,0.12,Transport (exc. int. aviation & shipping),N2O
 S92000003,1998,Count,Mt Co2Equiv,0.003,Forestry,CH4
-S92000003,2005,Count,Mt Co2Equiv,0.028,Transport (excluding international aviation and shipping),CH4
+S92000003,2005,Count,Mt Co2Equiv,0.028,Transport (exc. int. aviation & shipping),CH4
 S92000003,1998,Count,Mt Co2Equiv,10.153,Forestry,CO2
-S92000003,2005,Count,Mt Co2Equiv,11.468,Transport (excluding international aviation and shipping),CO2
+S92000003,2005,Count,Mt Co2Equiv,11.468,Transport (exc. int. aviation & shipping),CO2
 S92000003,1998,Count,Mt Co2Equiv,0.027,Forestry,N2O
-S92000003,2005,Count,Mt Co2Equiv,0.117,Transport (excluding international aviation and shipping),N2O
+S92000003,2005,Count,Mt Co2Equiv,0.117,Transport (exc. int. aviation & shipping),N2O
 S92000003,1999,Count,Mt Co2Equiv,0,Forestry,CH4
-S92000003,2006,Count,Mt Co2Equiv,0.026,Transport (excluding international aviation and shipping),CH4
+S92000003,2006,Count,Mt Co2Equiv,0.026,Transport (exc. int. aviation & shipping),CH4
 S92000003,1999,Count,Mt Co2Equiv,10.423,Forestry,CO2
-S92000003,2006,Count,Mt Co2Equiv,11.647,Transport (excluding international aviation and shipping),CO2
+S92000003,2006,Count,Mt Co2Equiv,11.647,Transport (exc. int. aviation & shipping),CO2
 S92000003,1999,Count,Mt Co2Equiv,0.025,Forestry,N2O
-S92000003,2006,Count,Mt Co2Equiv,0.113,Transport (excluding international aviation and shipping),N2O
+S92000003,2006,Count,Mt Co2Equiv,0.113,Transport (exc. int. aviation & shipping),N2O
 S92000003,2000,Count,Mt Co2Equiv,0.002,Forestry,CH4
-S92000003,2007,Count,Mt Co2Equiv,0.023,Transport (excluding international aviation and shipping),CH4
+S92000003,2007,Count,Mt Co2Equiv,0.023,Transport (exc. int. aviation & shipping),CH4
 S92000003,2000,Count,Mt Co2Equiv,10.476,Forestry,CO2
-S92000003,2007,Count,Mt Co2Equiv,11.831,Transport (excluding international aviation and shipping),CO2
+S92000003,2007,Count,Mt Co2Equiv,11.831,Transport (exc. int. aviation & shipping),CO2
 S92000003,2000,Count,Mt Co2Equiv,0.027,Forestry,N2O
-S92000003,2007,Count,Mt Co2Equiv,0.111,Transport (excluding international aviation and shipping),N2O
+S92000003,2007,Count,Mt Co2Equiv,0.111,Transport (exc. int. aviation & shipping),N2O
 S92000003,2001,Count,Mt Co2Equiv,0.002,Forestry,CH4
-S92000003,2008,Count,Mt Co2Equiv,0.021,Transport (excluding international aviation and shipping),CH4
+S92000003,2008,Count,Mt Co2Equiv,0.021,Transport (exc. int. aviation & shipping),CH4
 S92000003,2001,Count,Mt Co2Equiv,10.539,Forestry,CO2
-S92000003,2008,Count,Mt Co2Equiv,11.395,Transport (excluding international aviation and shipping),CO2
+S92000003,2008,Count,Mt Co2Equiv,11.395,Transport (exc. int. aviation & shipping),CO2
 S92000003,2001,Count,Mt Co2Equiv,0.027,Forestry,N2O
-S92000003,2008,Count,Mt Co2Equiv,0.095,Transport (excluding international aviation and shipping),N2O
+S92000003,2008,Count,Mt Co2Equiv,0.095,Transport (exc. int. aviation & shipping),N2O
 S92000003,2002,Count,Mt Co2Equiv,0.002,Forestry,CH4
-S92000003,2009,Count,Mt Co2Equiv,0.016,Transport (excluding international aviation and shipping),CH4
+S92000003,2009,Count,Mt Co2Equiv,0.016,Transport (exc. int. aviation & shipping),CH4
 S92000003,2002,Count,Mt Co2Equiv,10.536,Forestry,CO2
-S92000003,2009,Count,Mt Co2Equiv,10.94,Transport (excluding international aviation and shipping),CO2
+S92000003,2009,Count,Mt Co2Equiv,10.94,Transport (exc. int. aviation & shipping),CO2
 S92000003,2002,Count,Mt Co2Equiv,0.027,Forestry,N2O
-S92000003,2009,Count,Mt Co2Equiv,0.09,Transport (excluding international aviation and shipping),N2O
+S92000003,2009,Count,Mt Co2Equiv,0.09,Transport (exc. int. aviation & shipping),N2O
 S92000003,2003,Count,Mt Co2Equiv,0.002,Forestry,CH4
-S92000003,2010,Count,Mt Co2Equiv,0.014,Transport (excluding international aviation and shipping),CH4
+S92000003,2010,Count,Mt Co2Equiv,0.014,Transport (exc. int. aviation & shipping),CH4
 S92000003,2003,Count,Mt Co2Equiv,10.6,Forestry,CO2
-S92000003,2010,Count,Mt Co2Equiv,10.768,Transport (excluding international aviation and shipping),CO2
+S92000003,2010,Count,Mt Co2Equiv,10.768,Transport (exc. int. aviation & shipping),CO2
 S92000003,2003,Count,Mt Co2Equiv,0.027,Forestry,N2O
-S92000003,2010,Count,Mt Co2Equiv,0.09,Transport (excluding international aviation and shipping),N2O
+S92000003,2010,Count,Mt Co2Equiv,0.09,Transport (exc. int. aviation & shipping),N2O
 S92000003,2004,Count,Mt Co2Equiv,0.002,Forestry,CH4
-S92000003,2011,Count,Mt Co2Equiv,0.013,Transport (excluding international aviation and shipping),CH4
+S92000003,2011,Count,Mt Co2Equiv,0.013,Transport (exc. int. aviation & shipping),CH4
 S92000003,2004,Count,Mt Co2Equiv,10.596,Forestry,CO2
-S92000003,2011,Count,Mt Co2Equiv,10.537,Transport (excluding international aviation and shipping),CO2
+S92000003,2011,Count,Mt Co2Equiv,10.537,Transport (exc. int. aviation & shipping),CO2
 S92000003,2004,Count,Mt Co2Equiv,0.027,Forestry,N2O
-S92000003,2011,Count,Mt Co2Equiv,0.092,Transport (excluding international aviation and shipping),N2O
+S92000003,2011,Count,Mt Co2Equiv,0.092,Transport (exc. int. aviation & shipping),N2O
 S92000003,2005,Count,Mt Co2Equiv,0.004,Forestry,CH4
-S92000003,2012,Count,Mt Co2Equiv,0.011,Transport (excluding international aviation and shipping),CH4
-S92000003,2012,Count,Mt Co2Equiv,10.564,Transport (excluding international aviation and shipping),CO2
+S92000003,2012,Count,Mt Co2Equiv,0.011,Transport (exc. int. aviation & shipping),CH4
+S92000003,2012,Count,Mt Co2Equiv,10.564,Transport (exc. int. aviation & shipping),CO2
 S92000003,2005,Count,Mt Co2Equiv,10.546,Forestry,CO2
-S92000003,2012,Count,Mt Co2Equiv,0.096,Transport (excluding international aviation and shipping),N2O
+S92000003,2012,Count,Mt Co2Equiv,0.096,Transport (exc. int. aviation & shipping),N2O
 S92000003,2005,Count,Mt Co2Equiv,0.028,Forestry,N2O
-S92000003,2013,Count,Mt Co2Equiv,0.01,Transport (excluding international aviation and shipping),CH4
+S92000003,2013,Count,Mt Co2Equiv,0.01,Transport (exc. int. aviation & shipping),CH4
 S92000003,2006,Count,Mt Co2Equiv,0.004,Forestry,CH4
-S92000003,2013,Count,Mt Co2Equiv,10.479,Transport (excluding international aviation and shipping),CO2
+S92000003,2013,Count,Mt Co2Equiv,10.479,Transport (exc. int. aviation & shipping),CO2
 S92000003,2006,Count,Mt Co2Equiv,10.514,Forestry,CO2
-S92000003,2013,Count,Mt Co2Equiv,0.1,Transport (excluding international aviation and shipping),N2O
+S92000003,2013,Count,Mt Co2Equiv,0.1,Transport (exc. int. aviation & shipping),N2O
 S92000003,2006,Count,Mt Co2Equiv,0.028,Forestry,N2O
-S92000003,2014,Count,Mt Co2Equiv,0.009,Transport (excluding international aviation and shipping),CH4
+S92000003,2014,Count,Mt Co2Equiv,0.009,Transport (exc. int. aviation & shipping),CH4
 S92000003,2007,Count,Mt Co2Equiv,0.003,Forestry,CH4
-S92000003,2014,Count,Mt Co2Equiv,10.534,Transport (excluding international aviation and shipping),CO2
+S92000003,2014,Count,Mt Co2Equiv,10.534,Transport (exc. int. aviation & shipping),CO2
 S92000003,2007,Count,Mt Co2Equiv,10.572,Forestry,CO2
-S92000003,2014,Count,Mt Co2Equiv,0.104,Transport (excluding international aviation and shipping),N2O
+S92000003,2014,Count,Mt Co2Equiv,0.104,Transport (exc. int. aviation & shipping),N2O
 S92000003,2007,Count,Mt Co2Equiv,0.028,Forestry,N2O
 S92000003,1990,Count,Mt Co2Equiv,9.744,Waste Management,CH4
 S92000003,2008,Count,Mt Co2Equiv,0.003,Forestry,CH4

@@ -87,12 +87,14 @@ class AppContainer extends Component {
       <div>
         <Header title="Scotland's Emissions" inverseTitle="in graphs" subtitle="This is some placeholder text" />
         <Filter data={ this.props.data } emissionName={ this.props.emissionName } onFilterClick={ this.onFilterClick.bind( this ) } />
-        <ChartArea
-          data={ this.props.data }
-          year={ this.props.year }
-          emissionName={ this.props.emissionName }
-          chart={ this.props.chart }
-          dispatch={ this.props.dispatch } />
+        <main className="main">
+          <ChartArea
+            data={ this.props.data }
+            year={ this.props.year }
+            emissionName={ this.props.emissionName }
+            chart={ this.props.chart }
+            dispatch={ this.props.dispatch } />
+        </main>
         <Range onRangeChange={ this.onRangeChange.bind( this ) } years={ this.props.years } />
       </div>
     )

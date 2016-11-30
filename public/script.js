@@ -23360,12 +23360,16 @@
 	        null,
 	        _react2.default.createElement(_Header2.default, { title: "Scotland's Emissions", inverseTitle: "in graphs", subtitle: "This is some placeholder text" }),
 	        _react2.default.createElement(_Filter2.default, { data: this.props.data, emissionName: this.props.emissionName, onFilterClick: this.onFilterClick.bind(this) }),
-	        _react2.default.createElement(_ChartArea2.default, {
-	          data: this.props.data,
-	          year: this.props.year,
-	          emissionName: this.props.emissionName,
-	          chart: this.props.chart,
-	          dispatch: this.props.dispatch }),
+	        _react2.default.createElement(
+	          "main",
+	          { className: "main" },
+	          _react2.default.createElement(_ChartArea2.default, {
+	            data: this.props.data,
+	            year: this.props.year,
+	            emissionName: this.props.emissionName,
+	            chart: this.props.chart,
+	            dispatch: this.props.dispatch })
+	        ),
 	        _react2.default.createElement(_Range2.default, { onRangeChange: this.onRangeChange.bind(this), years: this.props.years })
 	      );
 	    }
@@ -40639,35 +40643,36 @@
 	  _createClass(ChartArea, [{
 	    key: "initializeChart",
 	    value: function initializeChart() {
-	      var labels = (0, _aggregation.arrayToUniqValuesByKey)(this.props.data, "name");
+	      var labels = (0, _aggregation.arrayToUniqValuesByKey)(this.props.data, "year");
+	      var datasets = this.getData();
+	      console.log(datasets, "datasets");
 
 	      var chartData = {
 	        labels: labels,
-	        datasets: [{
-	          data: this.getBarData()
-	        }]
+	        datasets: datasets
 	      };
 
 	      var chartOptions = {
 	        scales: {
 	          xAxes: [{
-	            stacked: true,
 	            ticks: {
 	              autoSkip: false,
 	              maxRotation: 0,
-	              minRotation: 90
+	              minRotation: 0
 	            }
-	          }],
-	          yAxes: [{
-	            stacked: true
 	          }]
 	        }
 	      };
 
 	      var el = _reactDom2.default.findDOMNode(this);
+	      el.height = el.parentNode.clientHeight;
+	      el.width = el.parentNode.clientWidth;
 	      var ctx = el.getContext("2d");
+
+	      _chart2.default.defaults.global.legend.display = false;
+
 	      var chart = new _chart2.default(ctx, {
-	        type: 'bar',
+	        type: 'line',
 	        data: chartData,
 	        options: chartOptions
 	      });
@@ -40680,73 +40685,35 @@
 	      this.initializeChart();
 	    }
 	  }, {
-	    key: "getBarData",
-	    value: function getBarData() {
-	      var dataFilteredByConditons = (0, _aggregation.arrayFilteredByConditions)(this.props.data, [["year", this.props.year], ["emission", this.props.emissionName]]);
-	      var dataMappedByKey = (0, _aggregation.arrayToUniqValuesByKey)(dataFilteredByConditons, "value");
-	      return dataMappedByKey;
+	    key: "getData",
+	    value: function getData() {
+	      var _this2 = this;
+
+	      var sectorNames = (0, _aggregation.arrayToUniqValuesByKey)(this.props.data, "name");
+	      var sectorColors = ["#48CFAD", "#967ADC", "#4A89DC", "#ED5565", "#656D78", "#FFCE54", "#4FC1E9", "#FC6E51", "#A0D648", "#EC87C0"];
+
+	      return sectorNames.map(function (sectorName, index) {
+	        var dataFilteredByConditons = (0, _aggregation.arrayFilteredByConditions)(_this2.props.data, [["name", sectorName], ["emission", _this2.props.emissionName]]);
+	        var dataMappedByKey = (0, _aggregation.arrayToUniqValuesByKey)(dataFilteredByConditons, "value");
+	        return { data: dataMappedByKey, fill: false, borderColor: sectorColors[index], label: sectorName };
+	      });
 	    }
 	  }, {
 	    key: "render",
 	    value: function render() {
 
+	      // const height = ReactDOM.findDOMNode( this ).parentNode.clientHeight;
+
 	      if (this.props.chart) {
 	        var chart = this.props.chart;
-	        chart.data.datasets[0].data = this.getBarData();
+	        chart.data.datasets = this.getData();
 	        chart.update();
 	      }
 
-	      return _react2.default.DOM.canvas({ id: "chart", style: { height: "100%" } });
+	      return _react2.default.createElement("canvas", null)
+	      // React.DOM.canvas({id: "chart", style:{ width: 200, height: 200 } })
+	      ;
 	    }
-
-	    // const ctx = document.getElementById( "chart" );
-	    //
-	    // if ( ctx ) {
-	    //
-	    //   ctx.width = "100%";
-	    //
-	    //   const chartData = arrayFilteredByConditions( data, [[ "year", "1998" ], [ "emission", emissionName ]] );
-	    //   const chartDataValues = arrayToUniqValuesByKey( chartData, "value" );
-	    //   const chartLabels = arrayToUniqValuesByKey( data, "name" )
-	    //
-	    //   var chartDataInfo = {
-	    //     labels: chartLabels,
-	    //     datasets: [
-	    //       {
-	    //         data: chartDataValues,
-	    //       }
-	    //     ]
-	    //   };
-	    //
-	    //   const chartOptions = {
-	    //     scales: {
-	    //         xAxes: [{
-	    //             stacked: true,
-	    //             ticks: {
-	    //               autoSkip: false,
-	    //               maxRotation: 0,
-	    //               minRotation: 90
-	    //             }
-	    //         }],
-	    //         yAxes: [{
-	    //             stacked: true
-	    //         }]
-	    //     }
-	    //   }
-	    //
-	    //   Chart.defaults.global.defaultFontColor = "#fff";
-	    //   Chart.defaults.global.defaultFontFamily = "'Lato', sans-serif";
-	    //   Chart.defaults.global.legend.display = false;
-	    //
-	    //   const chartDisplay = new Chart(ctx, {
-	    //     type: 'bar',
-	    //     data: chartDataInfo,
-	    //     options: chartOptions
-	    //   });
-	    //
-	    //
-	    // }
-
 	  }]);
 
 	  return ChartArea;

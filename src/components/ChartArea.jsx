@@ -7,37 +7,36 @@ import { arrayToUniqValuesByKey, arrayFilteredByConditions } from "../libs/aggre
 class ChartArea extends Component {
 
   initializeChart() {
-    const labels = arrayToUniqValuesByKey( this.props.data, "name" )
+    const labels = arrayToUniqValuesByKey( this.props.data, "year" )
+    const datasets = this.getData();
+    console.log( datasets, "datasets" )
 
     const chartData = {
       labels: labels,
-      datasets: [
-        {
-          data: this.getBarData(),
-        }
-      ]
+      datasets: datasets
     };
 
     const chartOptions = {
       scales: {
           xAxes: [{
-              stacked: true,
               ticks: {
                 autoSkip: false,
                 maxRotation: 0,
-                minRotation: 90
+                minRotation: 0
               }
-          }],
-          yAxes: [{
-              stacked: true
           }]
       }
     }
 
     const el = ReactDOM.findDOMNode( this );
+    el.height = el.parentNode.clientHeight;
+    el.width = el.parentNode.clientWidth;
     const ctx = el.getContext( "2d" );
+
+    Chart.defaults.global.legend.display = false;
+
     const chart = new Chart( ctx, {
-        type: 'bar',
+        type: 'line',
         data: chartData,
         options: chartOptions
       } )
@@ -49,74 +48,32 @@ class ChartArea extends Component {
     this.initializeChart()
   }
 
-  getBarData() {
-    const dataFilteredByConditons = arrayFilteredByConditions( this.props.data, [[ "year", this.props.year ], [ "emission", this.props.emissionName ]] );
-    const dataMappedByKey = arrayToUniqValuesByKey( dataFilteredByConditons, "value" );
-    return dataMappedByKey;
+  getData() {
+    const sectorNames = arrayToUniqValuesByKey( this.props.data, "name" );
+    const sectorColors = [ "#48CFAD", "#967ADC", "#4A89DC", "#ED5565", "#656D78", "#FFCE54", "#4FC1E9", "#FC6E51", "#A0D648", "#EC87C0" ]
+
+    return sectorNames.map( ( sectorName, index ) => {
+      const dataFilteredByConditons = arrayFilteredByConditions( this.props.data, [["name", sectorName],[ "emission", this.props.emissionName ]] );
+      const dataMappedByKey = arrayToUniqValuesByKey( dataFilteredByConditons, "value" );
+      return { data: dataMappedByKey, fill: false, borderColor: sectorColors[index], label: sectorName }
+    })
   }
 
   render() {
 
+    // const height = ReactDOM.findDOMNode( this ).parentNode.clientHeight;
+
     if ( this.props.chart ) {
       const chart = this.props.chart;
-      chart.data.datasets[0].data = this.getBarData();
+      chart.data.datasets = this.getData();
       chart.update();
     }
 
     return(
-      React.DOM.canvas({id: "chart", style:{ height:"100%" }})
+      <canvas></canvas>
+      // React.DOM.canvas({id: "chart", style:{ width: 200, height: 200 } })
     )
   }
-
-
-
-  // const ctx = document.getElementById( "chart" );
-  //
-  // if ( ctx ) {
-  //
-  //   ctx.width = "100%";
-  //
-  //   const chartData = arrayFilteredByConditions( data, [[ "year", "1998" ], [ "emission", emissionName ]] );
-  //   const chartDataValues = arrayToUniqValuesByKey( chartData, "value" );
-  //   const chartLabels = arrayToUniqValuesByKey( data, "name" )
-  //
-  //   var chartDataInfo = {
-  //     labels: chartLabels,
-  //     datasets: [
-  //       {
-  //         data: chartDataValues,
-  //       }
-  //     ]
-  //   };
-  //
-  //   const chartOptions = {
-  //     scales: {
-  //         xAxes: [{
-  //             stacked: true,
-  //             ticks: {
-  //               autoSkip: false,
-  //               maxRotation: 0,
-  //               minRotation: 90
-  //             }
-  //         }],
-  //         yAxes: [{
-  //             stacked: true
-  //         }]
-  //     }
-  //   }
-  //
-  //   Chart.defaults.global.defaultFontColor = "#fff";
-  //   Chart.defaults.global.defaultFontFamily = "'Lato', sans-serif";
-  //   Chart.defaults.global.legend.display = false;
-  //
-  //   const chartDisplay = new Chart(ctx, {
-  //     type: 'bar',
-  //     data: chartDataInfo,
-  //     options: chartOptions
-  //   });
-  //
-  //
-  // }
 
 }
 

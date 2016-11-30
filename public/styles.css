@@ -24,12 +24,14 @@ body, html {
 }
 
 .nav {
-  width: 65%;
-  height: 15%;
-  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10%;
 }
 
 .button-split {
+  width: 65%;
   display: flex;
   background: #4a89dc;
   border-radius: 30px;
@@ -56,14 +58,12 @@ body, html {
   background-color: red !important;
 }
 
-.container {
-  width: 80%;
-  height: 80%;
-  margin: 0 auto;
+.main {
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  flex-direction: column;
+  justify-content: center;
+  height: 60%;
+  padding: 0 2%;
 }
 
 .header {
@@ -71,7 +71,7 @@ body, html {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 20%;
+  height: 12%;
   color: #ffffff;
 }
 
