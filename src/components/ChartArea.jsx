@@ -18,8 +18,16 @@ class ChartArea extends Component {
 
     const chartOptions = {
       scales: {
+          yAxes: [
+            {
+              ticks: {
+                fontColor: "#ffffff"
+              }
+            }
+          ],
           xAxes: [{
               ticks: {
+                fontColor: "#ffffff",
                 autoSkip: false,
                 maxRotation: 0,
                 minRotation: 0

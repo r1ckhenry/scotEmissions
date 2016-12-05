@@ -40,7 +40,6 @@ class AppContainer extends Component {
             dispatch={ this.props.dispatch } />
         </main>
         <Legend sectorNames={ sectorNames } sectorColors={ sectorColors } />
-        <Range onRangeChange={ this.onRangeChange.bind( this ) } years={ this.props.years } />
       </div>
     )
   }

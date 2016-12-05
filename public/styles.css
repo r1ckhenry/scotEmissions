@@ -33,8 +33,6 @@ body, html {
 .button-split {
   width: 65%;
   display: flex;
-  background: #4a89dc;
-  border-radius: 30px;
 }
 
 .button-split .button {
@@ -42,28 +40,35 @@ body, html {
   font-weight: 100;
   cursor: pointer;
   outline: none;
-  background-color: transparent;
+  background-color: rgba( 255, 255, 255, 0.2 );
   border: none;
-  border-right: 1px solid #ffffff;
+  border-right: 1px solid rgba( 255, 255, 255, 0.3 );
   color: #ffffff;
   padding: 16px;
   font-size: 16px;
 }
 
+.button-split .button:first-child {
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
 .button-split .button:last-child {
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
   border-right: none;
 }
 
 .button-active {
-  background-color: red !important;
+  background-color: rgba( 255, 255, 255, 0.1 ) !important;
 }
 
 .main {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 60%;
-  padding: 0 2%;
+  height: 66%;
+  padding: 0 10%;
 }
 
 .header {
@@ -96,25 +101,25 @@ body, html {
 }
 
 .aside {
-  height: 18%;
+  height: 12%;
   display: flex;
   align-items: flex-end;
 }
 
 .legend-item {
-  padding: 0 5px;
+  box-sizing: border-box;
+  padding-top: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   height: 90%;
   flex: 1;
 }
 
 .legend-value {
+  font-size: 14px;
   text-align: center;
   color: #ffffff;
-  font-weight: 100;
+  font-weight: 300;
   text-transform: uppercase;
-}
-
-.legend-key {
-  height: 20px;
-  border-radius: 7px;
 }
