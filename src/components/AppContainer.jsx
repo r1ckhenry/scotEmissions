@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 import Header from "./Header";
 import Filter from "./Filter";
-import Range from "./Range";
 import Legend from "./Legend";
 import ChartArea from  "./ChartArea";
 
@@ -23,33 +22,28 @@ class AppContainer extends Component {
   render() {
 
     const sectorNames = arrayToUniqValuesByKey( this.props.data, "name" );
-    const sectorColors = [ "#48CFAD", "#967ADC", "#4A89DC", "#ED5565", "#656D78", "#FFCE54", "#4FC1E9", "#FC6E51", "#A0D648", "#EC87C0" ]
 
     return(
       <div>
-        <Header title="Scotlands Emissions" inverseTitle="in graphs" subtitle="These set of charts show Scotlands emissions from 1990 until 2014." />
-        <Filter data={ this.props.data } emissionName={ this.props.emissionName } onFilterClick={ this.onFilterClick.bind( this ) } />
+        <Header title="Scotland's Emissions" inverseTitle="in graphs" subtitle="These set of charts show Scotland's emissions from 1990 until 2014. All figures in CO<sub>2</sub>Eq." />
+        <Filter data={ this.props.data } emissionInfo={ this.props.emissionInfo } emissionName={ this.props.emissionName } onFilterClick={ this.onFilterClick.bind( this ) } />
         <main className="main">
           <ChartArea
             sectorNames={ sectorNames }
-            sectorColors={ sectorColors }
+            sectorColors={ this.props.sectorColors }
             data={ this.props.data }
             year={ this.props.year }
             emissionName={ this.props.emissionName }
             chart={ this.props.chart }
             dispatch={ this.props.dispatch } />
         </main>
-        <Legend sectorNames={ sectorNames } sectorColors={ sectorColors } />
+        <Legend sectorNames={ sectorNames } sectorColors={ this.props.sectorColors } />
       </div>
     )
   }
 
 }
 
-const mapStateToProps = ( state ) => {
-  console.log( state, "state" )
-  const years = arrayToUniqValuesByKey( state.data, "year" );
-  return Object.assign( {}, state, { years: years } )
-}
+const mapStateToProps = state => state
 
 export default connect( mapStateToProps )( AppContainer );

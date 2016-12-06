@@ -30,13 +30,22 @@ body, html {
   height: 10%;
 }
 
-.button-split {
+.button-split-wrapper {
   width: 65%;
   display: flex;
 }
 
-.button-split .button {
+.button-split {
+  position: relative;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-split .button {
+  height: 50px;
+  width: 100%;
   font-weight: 100;
   cursor: pointer;
   outline: none;
@@ -44,19 +53,63 @@ body, html {
   border: none;
   border-right: 1px solid rgba( 255, 255, 255, 0.3 );
   color: #ffffff;
-  padding: 16px;
   font-size: 16px;
 }
 
-.button-split .button:first-child {
-  border-top-left-radius: 30px;
-  border-bottom-left-radius: 30px;
+.button-split:hover .button-info {
+  animation-name: slide-down-up;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
 }
 
-.button-split .button:last-child {
-  border-top-right-radius: 30px;
-  border-bottom-right-radius: 30px;
+@keyframes slide-down-up {
+  0% {
+    opacity: 1;
+    transform: translateY(30px);
+    height: 30px;
+  }
+  10% {
+    transform: translateY(30px);
+    height: 30px;
+  }
+  95% {
+    transform: translateY(30px);
+    height: 30px;
+  }
+  100% {
+    opacity: 1;
+    height: 0px;
+  }
+}
+
+.button-split:last-child > .button {
   border-right: none;
+}
+
+.button-info {
+  box-sizing: border-box;
+  opacity: 0;
+  position: absolute;
+  bottom: 0;
+  z-index: -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100%;
+  padding: 0 4px;
+  font-size: 12px;
+  height: 30px;
+  font-weight: 300;
+  text-align: center;
+  background-color: #ffffff;
+}
+
+.button-split:first-child .button-info {
+  left: 0;
+}
+
+.button-split:last-child .button-info {
+  right: 0;
 }
 
 .button-active {
@@ -122,4 +175,57 @@ body, html {
   color: #ffffff;
   font-weight: 300;
   text-transform: uppercase;
+}
+
+@media (max-width: 420px) {
+  .header-title {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 980px) {
+  .main {
+    padding: 0 4%;
+  }
+
+  .header-subtitle {
+    padding: 0 10px;
+    text-align: center;
+    font-size: 10px;
+  }
+
+  .button-split-wrapper {
+    width: 100%;
+  }
+
+  .button-split .button {
+    height: 35px;
+    font-size: 10px;
+  }
+
+  .main {
+    height: 58%;
+  }
+
+  .aside {
+    height: 20%;
+    display: inline-block;
+  }
+
+  .legend-item {
+    height: 20%;
+    padding: 0 2px;
+    vertical-align: top;
+    display: inline-block;
+    width: 50%;
+  }
+
+  .legend-value {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 9px;
+  }
+
 }

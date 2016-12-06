@@ -23248,10 +23248,6 @@
 
 	var _Filter2 = _interopRequireDefault(_Filter);
 
-	var _Range = __webpack_require__(213);
-
-	var _Range2 = _interopRequireDefault(_Range);
-
 	var _Legend = __webpack_require__(214);
 
 	var _Legend2 = _interopRequireDefault(_Legend);
@@ -23296,26 +23292,25 @@
 	    value: function render() {
 
 	      var sectorNames = (0, _aggregation.arrayToUniqValuesByKey)(this.props.data, "name");
-	      var sectorColors = ["#48CFAD", "#967ADC", "#4A89DC", "#ED5565", "#656D78", "#FFCE54", "#4FC1E9", "#FC6E51", "#A0D648", "#EC87C0"];
 
 	      return _react2.default.createElement(
 	        "div",
 	        null,
-	        _react2.default.createElement(_Header2.default, { title: "Scotlands Emissions", inverseTitle: "in graphs", subtitle: "These set of charts show Scotlands emissions from 1990 until 2014." }),
-	        _react2.default.createElement(_Filter2.default, { data: this.props.data, emissionName: this.props.emissionName, onFilterClick: this.onFilterClick.bind(this) }),
+	        _react2.default.createElement(_Header2.default, { title: "Scotland's Emissions", inverseTitle: "in graphs", subtitle: "These set of charts show Scotland's emissions from 1990 until 2014. All figures in CO<sub>2</sub>Eq." }),
+	        _react2.default.createElement(_Filter2.default, { data: this.props.data, emissionInfo: this.props.emissionInfo, emissionName: this.props.emissionName, onFilterClick: this.onFilterClick.bind(this) }),
 	        _react2.default.createElement(
 	          "main",
 	          { className: "main" },
 	          _react2.default.createElement(_ChartArea2.default, {
 	            sectorNames: sectorNames,
-	            sectorColors: sectorColors,
+	            sectorColors: this.props.sectorColors,
 	            data: this.props.data,
 	            year: this.props.year,
 	            emissionName: this.props.emissionName,
 	            chart: this.props.chart,
 	            dispatch: this.props.dispatch })
 	        ),
-	        _react2.default.createElement(_Legend2.default, { sectorNames: sectorNames, sectorColors: sectorColors })
+	        _react2.default.createElement(_Legend2.default, { sectorNames: sectorNames, sectorColors: this.props.sectorColors })
 	      );
 	    }
 	  }]);
@@ -23324,9 +23319,7 @@
 	}(_react.Component);
 
 	var mapStateToProps = function mapStateToProps(state) {
-	  console.log(state, "state");
-	  var years = (0, _aggregation.arrayToUniqValuesByKey)(state.data, "year");
-	  return Object.assign({}, state, { years: years });
+	  return state;
 	};
 
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(AppContainer);
@@ -23359,19 +23352,9 @@
 	    _react2.default.createElement(
 	      "div",
 	      { className: "header-title" },
-	      title,
-	      " ",
-	      _react2.default.createElement(
-	        "span",
-	        { className: "header-title-inverse" },
-	        inverseTitle
-	      )
+	      title
 	    ),
-	    _react2.default.createElement(
-	      "div",
-	      { className: "header-subtitle" },
-	      subtitle
-	    )
+	    _react2.default.createElement("div", { className: "header-subtitle", dangerouslySetInnerHTML: { __html: subtitle } })
 	  );
 	};
 
@@ -23398,17 +23381,31 @@
 	var Filter = function Filter(_ref) {
 	  var data = _ref.data,
 	      onFilterClick = _ref.onFilterClick,
-	      emissionName = _ref.emissionName;
+	      emissionName = _ref.emissionName,
+	      emissionInfo = _ref.emissionInfo;
 
 
 	  var allEmissionNames = (0, _aggregation.arrayToUniqValuesByKey)(data, "emission");
 
 	  var buttons = allEmissionNames.map(function (indEmissionName, index) {
 	    var classes = indEmissionName === emissionName ? "button button-active" : "button";
+	    var emission = emissionInfo.find(function (indEmissionInfo) {
+	      return indEmissionInfo.id == indEmissionName;
+	    });
+
 	    return _react2.default.createElement(
-	      "button",
-	      { key: index, className: classes, onClick: onFilterClick, value: indEmissionName },
-	      indEmissionName
+	      "div",
+	      { className: "button-split", key: index },
+	      _react2.default.createElement("button", {
+	        className: classes,
+	        onClick: onFilterClick,
+	        value: indEmissionName,
+	        dangerouslySetInnerHTML: { __html: emission.htmlString } }),
+	      _react2.default.createElement(
+	        "div",
+	        { className: "button-info" },
+	        emission ? emission.name : null
+	      )
 	    );
 	  });
 
@@ -23417,7 +23414,7 @@
 	    { className: "nav" },
 	    _react2.default.createElement(
 	      "div",
-	      { className: "button-split" },
+	      { className: "button-split-wrapper" },
 	      buttons
 	    )
 	  );
@@ -40543,48 +40540,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(192)(module)))
 
 /***/ },
-/* 213 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var range = function range(_ref) {
-	  var years = _ref.years,
-	      onRangeChange = _ref.onRangeChange;
-
-
-	  var options = years.map(function (year, index) {
-	    return _react2.default.createElement(
-	      "option",
-	      { value: year, key: index },
-	      year
-	    );
-	  });
-
-	  return _react2.default.createElement(
-	    "form",
-	    { className: "range-slider" },
-	    _react2.default.createElement(
-	      "select",
-	      { onChange: onRangeChange },
-	      options
-	    )
-	  );
-	};
-
-	exports.default = range;
-
-/***/ },
+/* 213 */,
 /* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -40612,7 +40568,11 @@
 	      _react2.default.createElement(
 	        "div",
 	        { className: "legend-value" },
-	        sectorName
+	        _react2.default.createElement(
+	          "div",
+	          null,
+	          sectorName
+	        )
 	      )
 	    );
 	  });
@@ -40674,7 +40634,6 @@
 	    value: function initializeChart() {
 	      var labels = (0, _aggregation.arrayToUniqValuesByKey)(this.props.data, "year");
 	      var datasets = this.getData();
-	      console.log(datasets, "datasets");
 
 	      var chartData = {
 	        labels: labels,
@@ -40691,7 +40650,6 @@
 	          xAxes: [{
 	            ticks: {
 	              fontColor: "#ffffff",
-	              autoSkip: false,
 	              maxRotation: 0,
 	              minRotation: 0
 	            }
@@ -40705,6 +40663,17 @@
 	      var ctx = el.getContext("2d");
 
 	      _chart2.default.defaults.global.legend.display = false;
+
+	      _chart2.default.defaults.global.tooltips.backgroundColor = "rgba( 255, 255, 255, 1 )";
+	      _chart2.default.defaults.global.tooltips.bodyFontColor = "#777777";
+	      _chart2.default.defaults.global.tooltips.titleFontColor = "#777777";
+	      _chart2.default.defaults.global.tooltips.titleFontStyle = "normal";
+	      _chart2.default.defaults.global.tooltips.bodyFontStyle = "lighter";
+	      _chart2.default.defaults.global.tooltips.caretSize = 0;
+	      _chart2.default.defaults.global.tooltips.cornerRadius = 0;
+	      _chart2.default.defaults.global.tooltips.displayColors = false;
+	      _chart2.default.defaults.global.elements.point.radius = 4;
+	      _chart2.default.defaults.global.elements.point.hoverRadius = 5;
 
 	      var chart = new _chart2.default(ctx, {
 	        type: 'line',
@@ -40724,8 +40693,6 @@
 	    value: function getData() {
 	      var _this2 = this;
 
-	      console.log("props", this.props);
-
 	      return this.props.sectorNames.map(function (sectorName, index) {
 	        var dataFilteredByConditons = (0, _aggregation.arrayFilteredByConditions)(_this2.props.data, [["name", sectorName], ["emission", _this2.props.emissionName]]);
 	        var dataMappedByKey = (0, _aggregation.arrayToUniqValuesByKey)(dataFilteredByConditons, "value");
@@ -40736,17 +40703,13 @@
 	    key: "render",
 	    value: function render() {
 
-	      // const height = ReactDOM.findDOMNode( this ).parentNode.clientHeight;
-
 	      if (this.props.chart) {
 	        var chart = this.props.chart;
 	        chart.data.datasets = this.getData();
 	        chart.update();
 	      }
 
-	      return _react2.default.createElement("canvas", null)
-	      // React.DOM.canvas({id: "chart", style:{ width: 200, height: 200 } })
-	      ;
+	      return _react2.default.createElement("canvas", null);
 	    }
 	  }]);
 
@@ -67394,8 +67357,45 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	var initialState = {
+	  data: null,
+	  emissionName: "CO2",
+	  chart: null,
+	  sectorColors: ["#48CFAD", "#967ADC", "#4A89DC", "#ED5565", "#656D78", "#FFCE54", "#4FC1E9", "#FC6E51", "#A0D648", "#EC87C0"],
+	  year: "1990",
+	  emissionInfo: [{
+	    id: "CH4",
+	    htmlString: "CH<sub>4</sub>",
+	    name: "Methane"
+	  }, {
+	    id: "CO2",
+	    htmlString: "CO<sub>2</sub>",
+	    name: "Carbon Dioxide"
+	  }, {
+	    id: "N2O",
+	    htmlString: "N<sub>2</sub>O",
+	    name: "Nitrous Oxide"
+	  }, {
+	    id: "HFCs",
+	    htmlString: "HFCs",
+	    name: "Hydrofluorocarbons"
+	  }, {
+	    id: "NF3",
+	    htmlString: "NF<sub>3</sub>",
+	    name: "Nitrogen Trifluoride"
+	  }, {
+	    id: "PFCs",
+	    htmlString: "PFCs",
+	    name: "Perfluorocarbons"
+	  }, {
+	    id: "SF6",
+	    htmlString: "SF<sub>6</sub>",
+	    name: "Sulfur Hexafluoride"
+	  }]
+	};
+
 	var reducer = function reducer() {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { data: null, emissionName: "CH4", chart: null, year: "1990" };
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
 	  var action = arguments[1];
 
 

@@ -9,7 +9,6 @@ class ChartArea extends Component {
   initializeChart() {
     const labels = arrayToUniqValuesByKey( this.props.data, "year" )
     const datasets = this.getData();
-    console.log( datasets, "datasets" )
 
     const chartData = {
       labels: labels,
@@ -28,7 +27,6 @@ class ChartArea extends Component {
           xAxes: [{
               ticks: {
                 fontColor: "#ffffff",
-                autoSkip: false,
                 maxRotation: 0,
                 minRotation: 0
               }
@@ -42,6 +40,18 @@ class ChartArea extends Component {
     const ctx = el.getContext( "2d" );
 
     Chart.defaults.global.legend.display = false;
+
+    Chart.defaults.global.tooltips.backgroundColor = "rgba( 255, 255, 255, 1 )"
+    Chart.defaults.global.tooltips.bodyFontColor = "#777777"
+    Chart.defaults.global.tooltips.titleFontColor = "#777777"
+    Chart.defaults.global.tooltips.titleFontStyle = "normal"
+    Chart.defaults.global.tooltips.bodyFontStyle = "lighter"
+    Chart.defaults.global.tooltips.caretSize = 0
+    Chart.defaults.global.tooltips.cornerRadius = 0
+    Chart.defaults.global.tooltips.displayColors = false
+    Chart.defaults.global.elements.point.radius = 4;
+    Chart.defaults.global.elements.point.hoverRadius = 5;
+
 
     const chart = new Chart( ctx, {
         type: 'line',
@@ -58,7 +68,6 @@ class ChartArea extends Component {
 
   getData() {
 
-    console.log( "props", this.props )
 
     return this.props.sectorNames.map( ( sectorName, index ) => {
       const dataFilteredByConditons = arrayFilteredByConditions( this.props.data, [["name", sectorName],[ "emission", this.props.emissionName ]] );
@@ -69,8 +78,6 @@ class ChartArea extends Component {
 
   render() {
 
-    // const height = ReactDOM.findDOMNode( this ).parentNode.clientHeight;
-
     if ( this.props.chart ) {
       const chart = this.props.chart;
       chart.data.datasets = this.getData();
@@ -79,7 +86,6 @@ class ChartArea extends Component {
 
     return(
       <canvas></canvas>
-      // React.DOM.canvas({id: "chart", style:{ width: 200, height: 200 } })
     )
   }
 

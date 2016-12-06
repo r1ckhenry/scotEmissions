@@ -4,10 +4,8 @@ const Header = ( { title, inverseTitle, subtitle } ) => {
 
   return(
     <header className="header">
-      <div className="header-title">{ title } <span className="header-title-inverse">{inverseTitle}</span></div>
-      <div className="header-subtitle">
-        { subtitle }
-      </div>
+      <div className="header-title">{ title }</div>
+      <div className="header-subtitle" dangerouslySetInnerHTML={{__html: subtitle}}></div>
     </header>
   )
 
