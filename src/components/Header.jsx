@@ -1,6 +1,6 @@
 import React from "react";
 
-const Header = ( { title, inverseTitle, subtitle } ) => {
+const Header = ( { title, subtitle } ) => {
 
   return(
     <header className="header">

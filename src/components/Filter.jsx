@@ -8,7 +8,8 @@ const Filter = ( { data, onFilterClick, emissionName, emissionInfo } ) => {
 
   const buttons = allEmissionNames.map( ( indEmissionName, index ) => {
     let classes = indEmissionName === emissionName ? "button button-active" : "button"
-    const emission = emissionInfo.find( ( indEmissionInfo ) => { return indEmissionInfo.id == indEmissionName } )
+
+    const emission = emissionInfo.find( indEmissionInfo => indEmissionInfo.id == indEmissionName )
 
     return( <div className="button-split" key={ index }>
               <button

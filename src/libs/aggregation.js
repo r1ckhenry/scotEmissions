@@ -11,12 +11,3 @@ export function arrayFilteredByConditions( data, conditions ) {
     return matchesConditionsArr.every( bool => bool )
   })
 }
-
-// export function prepForBarChart( data ) {
-//   return data.map( ( set ) => { return [ set.name, set.value ] } )
-// }
-//
-// export function getAllUniqBy( data, key ) {
-//   var allKeys = data.map( set => set[key] )
-//   return _.uniq( allKeys )
-// }

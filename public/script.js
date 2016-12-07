@@ -23252,9 +23252,9 @@
 
 	var _Legend2 = _interopRequireDefault(_Legend);
 
-	var _ChartArea = __webpack_require__(215);
+	var _ChartContainer = __webpack_require__(373);
 
-	var _ChartArea2 = _interopRequireDefault(_ChartArea);
+	var _ChartContainer2 = _interopRequireDefault(_ChartContainer);
 
 	var _aggregation = __webpack_require__(211);
 
@@ -23296,16 +23296,15 @@
 	      return _react2.default.createElement(
 	        "div",
 	        null,
-	        _react2.default.createElement(_Header2.default, { title: "Scotland's Emissions", inverseTitle: "in graphs", subtitle: "These set of charts show Scotland's emissions from 1990 until 2014. All figures in CO<sub>2</sub>Eq." }),
+	        _react2.default.createElement(_Header2.default, { title: "Scotland's Emissions", subtitle: "These set of charts show Scotland's emissions from 1990 until 2014. All figures in CO<sub>2</sub>Eq." }),
 	        _react2.default.createElement(_Filter2.default, { data: this.props.data, emissionInfo: this.props.emissionInfo, emissionName: this.props.emissionName, onFilterClick: this.onFilterClick.bind(this) }),
 	        _react2.default.createElement(
 	          "main",
 	          { className: "main" },
-	          _react2.default.createElement(_ChartArea2.default, {
+	          _react2.default.createElement(_ChartContainer2.default, {
 	            sectorNames: sectorNames,
 	            sectorColors: this.props.sectorColors,
 	            data: this.props.data,
-	            year: this.props.year,
 	            emissionName: this.props.emissionName,
 	            chart: this.props.chart,
 	            dispatch: this.props.dispatch })
@@ -23342,7 +23341,6 @@
 
 	var Header = function Header(_ref) {
 	  var title = _ref.title,
-	      inverseTitle = _ref.inverseTitle,
 	      subtitle = _ref.subtitle;
 
 
@@ -23389,6 +23387,7 @@
 
 	  var buttons = allEmissionNames.map(function (indEmissionName, index) {
 	    var classes = indEmissionName === emissionName ? "button button-active" : "button";
+
 	    var emission = emissionInfo.find(function (indEmissionInfo) {
 	      return indEmissionInfo.id == indEmissionName;
 	    });
@@ -23457,15 +23456,6 @@
 	    });
 	  });
 	}
-
-	// export function prepForBarChart( data ) {
-	//   return data.map( ( set ) => { return [ set.name, set.value ] } )
-	// }
-	//
-	// export function getAllUniqBy( data, key ) {
-	//   var allKeys = data.map( set => set[key] )
-	//   return _.uniq( allKeys )
-	// }
 
 /***/ },
 /* 212 */
@@ -40587,138 +40577,7 @@
 	exports.default = Legend;
 
 /***/ },
-/* 215 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDom = __webpack_require__(32);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
-	var _chart = __webpack_require__(216);
-
-	var _chart2 = _interopRequireDefault(_chart);
-
-	var _aggregation = __webpack_require__(211);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var ChartArea = function (_Component) {
-	  _inherits(ChartArea, _Component);
-
-	  function ChartArea() {
-	    _classCallCheck(this, ChartArea);
-
-	    return _possibleConstructorReturn(this, (ChartArea.__proto__ || Object.getPrototypeOf(ChartArea)).apply(this, arguments));
-	  }
-
-	  _createClass(ChartArea, [{
-	    key: "initializeChart",
-	    value: function initializeChart() {
-	      var labels = (0, _aggregation.arrayToUniqValuesByKey)(this.props.data, "year");
-	      var datasets = this.getData();
-
-	      var chartData = {
-	        labels: labels,
-	        datasets: datasets
-	      };
-
-	      var chartOptions = {
-	        scales: {
-	          yAxes: [{
-	            ticks: {
-	              fontColor: "#ffffff"
-	            }
-	          }],
-	          xAxes: [{
-	            ticks: {
-	              fontColor: "#ffffff",
-	              maxRotation: 0,
-	              minRotation: 0
-	            }
-	          }]
-	        }
-	      };
-
-	      var el = _reactDom2.default.findDOMNode(this);
-	      el.height = el.parentNode.clientHeight;
-	      el.width = el.parentNode.clientWidth;
-	      var ctx = el.getContext("2d");
-
-	      _chart2.default.defaults.global.legend.display = false;
-
-	      _chart2.default.defaults.global.tooltips.backgroundColor = "rgba( 255, 255, 255, 1 )";
-	      _chart2.default.defaults.global.tooltips.bodyFontColor = "#777777";
-	      _chart2.default.defaults.global.tooltips.titleFontColor = "#777777";
-	      _chart2.default.defaults.global.tooltips.titleFontStyle = "normal";
-	      _chart2.default.defaults.global.tooltips.bodyFontStyle = "lighter";
-	      _chart2.default.defaults.global.tooltips.caretSize = 0;
-	      _chart2.default.defaults.global.tooltips.cornerRadius = 0;
-	      _chart2.default.defaults.global.tooltips.displayColors = false;
-	      _chart2.default.defaults.global.elements.point.radius = 4;
-	      _chart2.default.defaults.global.elements.point.hoverRadius = 5;
-
-	      var chart = new _chart2.default(ctx, {
-	        type: 'line',
-	        data: chartData,
-	        options: chartOptions
-	      });
-
-	      this.props.dispatch({ type: "ADD_CHART", chart: chart });
-	    }
-	  }, {
-	    key: "componentDidMount",
-	    value: function componentDidMount() {
-	      this.initializeChart();
-	    }
-	  }, {
-	    key: "getData",
-	    value: function getData() {
-	      var _this2 = this;
-
-	      return this.props.sectorNames.map(function (sectorName, index) {
-	        var dataFilteredByConditons = (0, _aggregation.arrayFilteredByConditions)(_this2.props.data, [["name", sectorName], ["emission", _this2.props.emissionName]]);
-	        var dataMappedByKey = (0, _aggregation.arrayToUniqValuesByKey)(dataFilteredByConditons, "value");
-	        return { data: dataMappedByKey, fill: false, borderColor: _this2.props.sectorColors[index], label: sectorName };
-	      });
-	    }
-	  }, {
-	    key: "render",
-	    value: function render() {
-
-	      if (this.props.chart) {
-	        var chart = this.props.chart;
-	        chart.data.datasets = this.getData();
-	        chart.update();
-	      }
-
-	      return _react2.default.createElement("canvas", null);
-	    }
-	  }]);
-
-	  return ChartArea;
-	}(_react.Component);
-
-	exports.default = ChartArea;
-
-/***/ },
+/* 215 */,
 /* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -67362,7 +67221,6 @@
 	  emissionName: "CO2",
 	  chart: null,
 	  sectorColors: ["#48CFAD", "#967ADC", "#4A89DC", "#ED5565", "#656D78", "#FFCE54", "#4FC1E9", "#FC6E51", "#A0D648", "#EC87C0"],
-	  year: "1990",
 	  emissionInfo: [{
 	    id: "CH4",
 	    htmlString: "CH<sub>4</sub>",
@@ -67400,8 +67258,6 @@
 
 
 	  switch (action.type) {
-	    case "UPDATE_YEAR":
-	      return Object.assign({}, state, { year: action.year });
 	    case "ADD_CHART":
 	      return Object.assign({}, state, { chart: action.chart });
 	    case "ADD_DATASET":
@@ -67414,6 +67270,153 @@
 	};
 
 	exports.default = reducer;
+
+/***/ },
+/* 373 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(32);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _chart = __webpack_require__(216);
+
+	var _chart2 = _interopRequireDefault(_chart);
+
+	var _chartOptions = __webpack_require__(374);
+
+	var _chartOptions2 = _interopRequireDefault(_chartOptions);
+
+	var _aggregation = __webpack_require__(211);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ChartContainer = function (_Component) {
+	  _inherits(ChartContainer, _Component);
+
+	  function ChartContainer() {
+	    _classCallCheck(this, ChartContainer);
+
+	    return _possibleConstructorReturn(this, (ChartContainer.__proto__ || Object.getPrototypeOf(ChartContainer)).apply(this, arguments));
+	  }
+
+	  _createClass(ChartContainer, [{
+	    key: "initializeChart",
+	    value: function initializeChart() {
+	      var labels = (0, _aggregation.arrayToUniqValuesByKey)(this.props.data, "year");
+	      var datasets = this.getData();
+
+	      var chartData = {
+	        labels: labels,
+	        datasets: datasets
+	      };
+
+	      var el = _reactDom2.default.findDOMNode(this);
+	      el.height = el.parentNode.clientHeight;
+	      el.width = el.parentNode.clientWidth;
+	      var ctx = el.getContext("2d");
+
+	      _chart2.default.defaults.global.legend.display = false;
+
+	      _chart2.default.defaults.global.tooltips.backgroundColor = "rgba( 255, 255, 255, 1 )";
+	      _chart2.default.defaults.global.tooltips.bodyFontColor = "#777777";
+	      _chart2.default.defaults.global.tooltips.titleFontColor = "#777777";
+	      _chart2.default.defaults.global.tooltips.titleFontStyle = "normal";
+	      _chart2.default.defaults.global.tooltips.bodyFontStyle = "lighter";
+	      _chart2.default.defaults.global.tooltips.caretSize = 0;
+	      _chart2.default.defaults.global.tooltips.cornerRadius = 0;
+	      _chart2.default.defaults.global.tooltips.displayColors = false;
+	      _chart2.default.defaults.global.elements.point.radius = 4;
+	      _chart2.default.defaults.global.elements.point.hoverRadius = 5;
+
+	      var chart = new _chart2.default(ctx, {
+	        type: 'line',
+	        data: chartData,
+	        options: _chartOptions2.default
+	      });
+
+	      this.props.dispatch({ type: "ADD_CHART", chart: chart });
+	    }
+	  }, {
+	    key: "componentDidMount",
+	    value: function componentDidMount() {
+	      this.initializeChart();
+	    }
+	  }, {
+	    key: "getData",
+	    value: function getData() {
+	      var _this2 = this;
+
+	      var data = this.props.sectorNames.map(function (sectorName, index) {
+	        var dataFilteredByConditons = (0, _aggregation.arrayFilteredByConditions)(_this2.props.data, [["name", sectorName], ["emission", _this2.props.emissionName]]);
+	        var dataMappedByKey = (0, _aggregation.arrayToUniqValuesByKey)(dataFilteredByConditons, "value");
+	        return { data: dataMappedByKey, fill: false, borderColor: _this2.props.sectorColors[index], label: sectorName };
+	      });
+	      return data;
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      if (this.props.chart) {
+	        var chart = this.props.chart;
+	        chart.data.datasets = this.getData();
+	        chart.update();
+	      }
+
+	      return _react2.default.createElement("canvas", null);
+	    }
+	  }]);
+
+	  return ChartContainer;
+	}(_react.Component);
+
+	exports.default = ChartContainer;
+
+/***/ },
+/* 374 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var chartOptions = {
+	  scales: {
+	    yAxes: [{
+	      ticks: {
+	        fontColor: "#ffffff"
+	      }
+	    }],
+	    xAxes: [{
+	      ticks: {
+	        fontColor: "#ffffff",
+	        maxRotation: 0,
+	        minRotation: 0
+	      }
+	    }]
+	  }
+	};
+
+	exports.default = chartOptions;
 
 /***/ }
 /******/ ]);

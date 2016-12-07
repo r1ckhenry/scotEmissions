@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom"
 import Chart from 'chart.js'
 
+import chartOptions from "../libs/chartOptions"
+
 import { arrayToUniqValuesByKey, arrayFilteredByConditions } from "../libs/aggregation";
 
-class ChartArea extends Component {
+class ChartContainer extends Component {
 
   initializeChart() {
     const labels = arrayToUniqValuesByKey( this.props.data, "year" )
@@ -14,25 +16,6 @@ class ChartArea extends Component {
       labels: labels,
       datasets: datasets
     };
-
-    const chartOptions = {
-      scales: {
-          yAxes: [
-            {
-              ticks: {
-                fontColor: "#ffffff"
-              }
-            }
-          ],
-          xAxes: [{
-              ticks: {
-                fontColor: "#ffffff",
-                maxRotation: 0,
-                minRotation: 0
-              }
-          }]
-      }
-    }
 
     const el = ReactDOM.findDOMNode( this );
     el.height = el.parentNode.clientHeight;
@@ -67,17 +50,15 @@ class ChartArea extends Component {
   }
 
   getData() {
-
-
-    return this.props.sectorNames.map( ( sectorName, index ) => {
+    const data = this.props.sectorNames.map( ( sectorName, index ) => {
       const dataFilteredByConditons = arrayFilteredByConditions( this.props.data, [["name", sectorName],[ "emission", this.props.emissionName ]] );
       const dataMappedByKey = arrayToUniqValuesByKey( dataFilteredByConditons, "value" );
       return { data: dataMappedByKey, fill: false, borderColor: this.props.sectorColors[index], label: sectorName }
     })
+    return data
   }
 
   render() {
-
     if ( this.props.chart ) {
       const chart = this.props.chart;
       chart.data.datasets = this.getData();
@@ -91,4 +72,4 @@ class ChartArea extends Component {
 
 }
 
-export default ChartArea;
+export default ChartContainer;

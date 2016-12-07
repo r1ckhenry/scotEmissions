@@ -3,7 +3,6 @@ const initialState = {
   emissionName: "CO2",
   chart: null,
   sectorColors: [ "#48CFAD", "#967ADC", "#4A89DC", "#ED5565", "#656D78", "#FFCE54", "#4FC1E9", "#FC6E51", "#A0D648", "#EC87C0" ],
-  year: "1990",
   emissionInfo: [
     {
       id: "CH4",
@@ -46,8 +45,6 @@ const initialState = {
 const reducer = ( state = initialState, action ) => {
 
   switch ( action.type ) {
-    case "UPDATE_YEAR":
-      return Object.assign( {}, state, { year: action.year } )
     case "ADD_CHART":
       return Object.assign( {}, state, { chart: action.chart } )
     case "ADD_DATASET":
