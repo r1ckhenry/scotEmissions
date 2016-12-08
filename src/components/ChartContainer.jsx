@@ -24,6 +24,9 @@ class ChartContainer extends Component {
 
     Chart.defaults.global.legend.display = false;
 
+    Chart.defaults.global.defaultFontFamily = "'Lato', sans-serif"
+    Chart.defaults.global.defaultFontColor = "#ffffff"
+
     Chart.defaults.global.tooltips.backgroundColor = "rgba( 255, 255, 255, 1 )"
     Chart.defaults.global.tooltips.bodyFontColor = "#777777"
     Chart.defaults.global.tooltips.titleFontColor = "#777777"

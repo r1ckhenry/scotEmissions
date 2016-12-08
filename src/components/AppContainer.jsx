@@ -25,7 +25,7 @@ class AppContainer extends Component {
 
     return(
       <div>
-        <Header title="Scotland's Emissions" subtitle="These set of charts show Scotland's emissions from 1990 until 2014. All figures in CO<sub>2</sub>Eq." />
+        <Header title="Scotland's Emissions" subtitle="These set of charts show Scotland's emissions by sector from 1990 until 2014. All figures in CO<sub>2</sub>Eq." />
         <Filter data={ this.props.data } emissionInfo={ this.props.emissionInfo } emissionName={ this.props.emissionName } onFilterClick={ this.onFilterClick.bind( this ) } />
         <main className="main">
           <ChartContainer

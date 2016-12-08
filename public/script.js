@@ -23296,7 +23296,7 @@
 	      return _react2.default.createElement(
 	        "div",
 	        null,
-	        _react2.default.createElement(_Header2.default, { title: "Scotland's Emissions", subtitle: "These set of charts show Scotland's emissions from 1990 until 2014. All figures in CO<sub>2</sub>Eq." }),
+	        _react2.default.createElement(_Header2.default, { title: "Scotland's Emissions", subtitle: "These set of charts show Scotland's emissions by sector from 1990 until 2014. All figures in CO<sub>2</sub>Eq." }),
 	        _react2.default.createElement(_Filter2.default, { data: this.props.data, emissionInfo: this.props.emissionInfo, emissionName: this.props.emissionName, onFilterClick: this.onFilterClick.bind(this) }),
 	        _react2.default.createElement(
 	          "main",
@@ -40639,6 +40639,9 @@
 	      var ctx = el.getContext("2d");
 
 	      _chart2.default.defaults.global.legend.display = false;
+
+	      _chart2.default.defaults.global.defaultFontFamily = "'Lato', sans-serif";
+	      _chart2.default.defaults.global.defaultFontColor = "#ffffff";
 
 	      _chart2.default.defaults.global.tooltips.backgroundColor = "rgba( 255, 255, 255, 1 )";
 	      _chart2.default.defaults.global.tooltips.bodyFontColor = "#777777";
@@ -67336,13 +67339,20 @@
 	var chartOptions = {
 	  scales: {
 	    yAxes: [{
-	      ticks: {
-	        fontColor: "#ffffff"
+	      scaleLabel: {
+	        display: true,
+	        labelString: "CO2Eq",
+	        fontSize: 15
 	      }
 	    }],
 	    xAxes: [{
-	      ticks: {
+	      scaleLabel: {
+	        display: true,
+	        labelString: "Years",
 	        fontColor: "#ffffff",
+	        fontSize: 15
+	      },
+	      ticks: {
 	        maxRotation: 0,
 	        minRotation: 0
 	      }

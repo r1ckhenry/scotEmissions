@@ -2,14 +2,21 @@ const chartOptions = {
   scales: {
       yAxes: [
         {
-          ticks: {
-            fontColor: "#ffffff"
+          scaleLabel: {
+            display: true,
+            labelString: "CO2Eq",
+            fontSize: 15
           }
         }
       ],
       xAxes: [{
-          ticks: {
+          scaleLabel: {
+            display: true,
+            labelString: "Years",
             fontColor: "#ffffff",
+            fontSize: 15
+          },
+          ticks: {
             maxRotation: 0,
             minRotation: 0
           }
