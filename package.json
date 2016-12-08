@@ -29,5 +29,8 @@
     "babel-preset-react": "^6.16.0",
     "jest": "^17.0.3",
     "webpack": "^1.13.3"
+  },
+  "engines": {
+    "node": "7.0.0"
   }
 }

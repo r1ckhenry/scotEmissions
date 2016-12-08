@@ -4,6 +4,8 @@ var express = require( "express" );
 var app = express();
 var parse = require( './aggregation.js' );
 
+var port = process.env.PORT || 3000;
+
 app.use( express.static('public') )
 
 app.get( "/sectors", function( req, res ) {
@@ -23,6 +25,6 @@ app.get( "/sectors", function( req, res ) {
 
 })
 
-app.listen( "3000", function() {
-  console.log( "runnning on 3000" )
+app.listen( port, function() {
+  console.log( "runnning on " + port )
 })
