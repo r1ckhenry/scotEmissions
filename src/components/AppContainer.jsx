@@ -7,7 +7,7 @@ import ChartContainer from  "./ChartContainer";
 
 import { arrayToUniqValuesByKey, arrayFilteredByConditions } from "../libs/aggregation";
 
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 class AppContainer extends Component {
 
@@ -43,6 +43,6 @@ class AppContainer extends Component {
 
 }
 
-const mapStateToProps = state => state
+const mapStateToProps = state => state;
 
 export default connect( mapStateToProps )( AppContainer );

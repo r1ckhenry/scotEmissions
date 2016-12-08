@@ -7,9 +7,9 @@ const Filter = ( { data, onFilterClick, emissionName, emissionInfo } ) => {
   var allEmissionNames = arrayToUniqValuesByKey( data, "emission" );
 
   const buttons = allEmissionNames.map( ( indEmissionName, index ) => {
-    let classes = indEmissionName === emissionName ? "button button-active" : "button"
+    let classes = indEmissionName === emissionName ? "button button-active" : "button";
 
-    const emission = emissionInfo.find( indEmissionInfo => indEmissionInfo.id == indEmissionName )
+    const emission = emissionInfo.find( indEmissionInfo => indEmissionInfo.id == indEmissionName );
 
     return( <div className="button-split" key={ index }>
               <button
@@ -31,4 +31,4 @@ const Filter = ( { data, onFilterClick, emissionName, emissionInfo } ) => {
 
 }
 
-export default Filter
+export default Filter;

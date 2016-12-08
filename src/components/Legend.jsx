@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 const Legend = ( { sectorNames, sectorColors } ) => {
 
@@ -20,4 +20,4 @@ const Legend = ( { sectorNames, sectorColors } ) => {
 
 }
 
-export default Legend
+export default Legend;

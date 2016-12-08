@@ -24,4 +24,4 @@ const chartOptions = {
   }
 }
 
-export default chartOptions
+export default chartOptions;

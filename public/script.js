@@ -81,12 +81,16 @@
 
 	window.onload = function () {
 
-	  fetch("/sectors").then(function (response) {
-	    return response.json();
-	  }).then(function (data) {
+	  var request = new XMLHttpRequest();
+	  request.open("GET", "/sectors");
+
+	  request.onload = function () {
+	    var data = JSON.parse(request.response);
 	    store.dispatch({ type: "ADD_DATASET", data: data });
 	    init();
-	  });
+	  };
+
+	  request.send();
 	};
 
 /***/ },
